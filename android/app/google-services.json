@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "241640203013",
+    "firebase_url": "https://inkimobile.firebaseio.com",
+    "project_id": "inkimobile",
+    "storage_bucket": "inkimobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241640203013:android:667f5130797c6ba2",
+        "android_client_info": {
+          "package_name": "com.inkimobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241640203013-d7trjisikjklb7brdda08rqjr8l17528.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD17mj8mZlkHY1-2qwK2XUARfHgPyclIG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

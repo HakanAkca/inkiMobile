@@ -9,6 +9,7 @@ import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -34,7 +35,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCardViewPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
-            new RNFirebasePackage()
+            new RNFirebasePackage(),
+            new RNFirebaseAuthPackage()
       );
     }
 
