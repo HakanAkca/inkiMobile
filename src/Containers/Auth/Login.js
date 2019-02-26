@@ -3,6 +3,7 @@ import { StyleSheet, Text, Image, View, KeyboardAvoidingView, Keyboard, Platform
 import { Input, Button } from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import CardView from "react-native-cardview";
+import LinearGradient from "react-native-linear-gradient";
 
 
 class Login extends Component {
@@ -54,6 +55,8 @@ class Login extends Component {
         const offset = Platform.OS === 'ios' ? 0 : -200;
 
         return (
+
+            <LinearGradient colors={['#85DAF7', '#FD7495']} style={{height: '100%'}}>
             <KeyboardAvoidingView style={{height: '100%'}} behavior="padding" keyboardVerticalOffset={offset}>
                 <View style={styles.container}>
                     <Image style={{width: imageSize, height: imageSize, resizeMode: 'contain', marginTop: marginTop}} source={require('../../Assets/Images/logo.png')}/>
@@ -89,6 +92,7 @@ class Login extends Component {
                     </CardView>
                 </View>
             </KeyboardAvoidingView>
+            </LinearGradient>
         )
     }
 }
