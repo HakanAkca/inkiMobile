@@ -16,7 +16,9 @@ const SplashStack = createStackNavigator({
     },
     Register: {
         screen: SignUp
-    }
+    },
+}, {
+    headerMode: 'none'
 })
 
 const HomeStack = createStackNavigator({
