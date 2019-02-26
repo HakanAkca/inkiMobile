@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 import firebase from 'react-native-firebase'
+import { Input } from "react-native-elements";
 
 
 class SignUp extends Component {
-    state = { email: '', password: '', errorMessage: null }
+    state = {
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+        errorMessage: null
+    }
 
     handleSignUp = () => {
         firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => this.props.navigation.navigate('AppStack'))
+            .then((res) =>
+                firebase.database().ref('users/' + res.user.uid).set({
+                    firstName: this.state.firstname,
+                    lastName: this.state.lastname,
+                    email: this.state.email
+                }))
             .catch(error => this.setState({ errorMessage: error.message }))
     }
     render() {
@@ -20,15 +32,31 @@ class SignUp extends Component {
                 {this.state.errorMessage &&
                 <Text style={{ color: 'red' }}>
                     {this.state.errorMessage}
-                </Text>}
-                <TextInput
+                </Text>
+                }
+                <Input
+                    placeholder="Prénom"
+                    autoCapitalize="none"
+                    style={styles.textInput}
+                    onChangeText={firstname => this.setState({ firstname })}
+                    value={this.state.firstname}
+                />
+
+                <Input
+                    placeholder="Nom"
+                    autoCapitalize="none"
+                    style={styles.textInput}
+                    onChangeText={lastname => this.setState({ lastname })}
+                    value={this.state.lastname}
+                />
+                <Input
                     placeholder="Email"
                     autoCapitalize="none"
                     style={styles.textInput}
                     onChangeText={email => this.setState({ email })}
                     value={this.state.email}
                 />
-                <TextInput
+                <Input
                     secureTextEntry
                     placeholder="Password"
                     autoCapitalize="none"
@@ -37,10 +65,6 @@ class SignUp extends Component {
                     value={this.state.password}
                 />
                 <Button title="Sign Up" onPress={this.handleSignUp} />
-                <Button
-                    title="Already have an account? Login"
-                    onPress={() => this.props.navigation.navigate('Login')}
-                />
             </View>
         )
     }

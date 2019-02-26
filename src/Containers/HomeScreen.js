@@ -3,20 +3,21 @@ import { StyleSheet, Platform, Image, Text, View } from 'react-native'
 import firebase from 'react-native-firebase'
 
 class HomeScreen extends Component {
-    state = { currentUser: null }
+    state = { currentUser: [] }
 
     componentDidMount() {
-        const { currentUser } = firebase.auth()
-        this.setState({ currentUser })
+        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value').then((res) => {this.setState({currentUser: res._value})});
     }
 
     render() {
         const { currentUser } = this.state
 
+        console.log(currentUser)
+
         return (
             <View style={styles.container}>
                 <Text>
-                    Hi {currentUser && currentUser.email}!
+                    Hi {currentUser.firstName} !
                 </Text>
             </View>
         )
