@@ -3,6 +3,12 @@ package com.inkimobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.horcrux.svg.SvgPackage;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -22,7 +28,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+            new LinearGradientPackage(),
+            new SvgPackage(),
+            new RNCardViewPackage(),
+            new VectorIconsPackage(),
+            new RNGestureHandlerPackage(),
+            new RNFirebasePackage()
       );
     }
 
