@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, Image, View, KeyboardAvoidingView, Keyboard} from 'react-native'
+import { StyleSheet, Text, Image, View, KeyboardAvoidingView, Keyboard, Platform} from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import firebase from 'react-native-firebase'
 import CardView from "react-native-cardview";
@@ -49,11 +49,12 @@ class Login extends Component {
 
     render() {
 
-        const imageSize = this.state.keyboard === true ? 100 : 200
-        const marginTop = this.state.keyboard === true ? 20 : 0
+        const imageSize = this.state.keyboard === true ? 100 : 200;
+        const marginTop = this.state.keyboard === true ? 20 : 0;
+        const offset = Platform.OS === 'ios' ? 0 : -200;
 
         return (
-            <KeyboardAvoidingView style={{height: '100%'}} behavior="padding">
+            <KeyboardAvoidingView style={{height: '100%'}} behavior="padding" keyboardVerticalOffset={offset}>
                 <View style={styles.container}>
                     <Image style={{width: imageSize, height: imageSize, resizeMode: 'contain', marginTop: marginTop}} source={require('../../Assets/Images/logo.png')}/>
                     <Text style={{fontSize: 20, marginTop: 20}}>Connexion</Text>
