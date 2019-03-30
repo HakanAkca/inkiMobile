@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {View, Text, ScrollView} from 'react-native'
-import {Avatar, Icon, Rating} from 'react-native-elements'
+import firebase from 'react-native-firebase'
+import {Avatar, Button, Icon, Rating} from 'react-native-elements'
 import LinearGradient from "react-native-linear-gradient";
 import CardView from "react-native-cardview";
 
@@ -8,6 +9,7 @@ class ProfileScreen extends Component {
 
     signOutUser = async () => {
         try {
+            console.log('ok')
             await firebase.auth().signOut()
             this.props.navigation.navigate('Login')
         } catch (e) {
@@ -63,6 +65,7 @@ class ProfileScreen extends Component {
                         </View>
 
                     </CardView>
+                    <Button title="Déconnexion" onPress={() => this.signOutUser()}/>
                 </View>
             </View>
         )
