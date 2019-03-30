@@ -61,8 +61,8 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{ height: '50%', width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                    <View style={{alignItems: 'center', width: '100%', marginTop: 60}}>
+                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{ height: '45%', width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                    <View style={{alignItems: 'center', width: '100%', marginTop: 50}}>
                         <Text style={{fontSize: 20}}> Que cherchez-vous ?</Text>
                         <View style={{width: '90%',marginTop: 20}}>
                             <Input
@@ -119,7 +119,7 @@ class HomeScreen extends Component {
                     </View>
                 </LinearGradient>
                 <View style={{justifyContent: 'center', padding: 10}}>
-                    <Text style={{fontSize: 20}}>Les mieux notés</Text>
+                    <Text style={{fontSize: 20, marginLeft: '3.5%'}}>Les mieux notés</Text>
                     <ScrollView
                         containerStyle={{justifyContent:'center'}}
                         horizontal
