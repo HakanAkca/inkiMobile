@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Platform, Image, Text, View, TouchableOpacity} from 'react-native'
+import {StyleSheet, Platform, Image, Text, View, TouchableOpacity, ScrollView} from 'react-native'
 import firebase from 'react-native-firebase'
 import {Button, Card, Icon, Input, Slider} from "react-native-elements";
 import ReactNativePickerModule from 'react-native-picker-module'
@@ -21,17 +21,11 @@ class HomeScreen extends Component {
         ],
         videos: [
             {
-                id: "WpIAc9by5iU",
                 thumbnail: "https://img.youtube.com/vi/D9ioyEvdggk/hqdefault.jpg",
-                title: "Led Zeppelin - Stairway To Heaven"
             }, {
-                id: "sNPnbI1arSE",
                 thumbnail: "https://img.youtube.com/vi/sNPnbI1arSE/hqdefault.jpg",
-                title: "Eminem - My Name Is"
             }, {
-                id: "VOgFZfRVaww",
                 thumbnail: "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
-                title: ""
             }
         ]
     }
@@ -107,7 +101,6 @@ class HomeScreen extends Component {
                                         thumbTintColor={'white'}
                                         maximumValue={50}
                                     />
-                                    <Text>Value: {this.state.value}</Text>
                                 </View>
                             </View>
                             <View>
@@ -125,18 +118,29 @@ class HomeScreen extends Component {
                         </View>
                     </View>
                 </LinearGradient>
-                <View style={{padding: 10}}>
-                    <Text style={{fontSize: 20}}>Les mieux Notés</Text>
-                    <View style={{marginTop: 10}}>
-                        <Carousel
-                            ref={ (c) => { this._carousel = c; } }
-                            data={this.state.videos}
-                            renderItem={this._renderItem.bind(this)}
-                            onSnapToItem={this.handleSnapToItem.bind(this)}
-                            sliderWidth={360}
-                            itemWidth={290}
-                        />
-                    </View>
+                <View style={{justifyContent: 'center', padding: 10}}>
+                    <Text style={{fontSize: 20}}>Les mieux notés</Text>
+                    <ScrollView
+                        containerStyle={{justifyContent:'center'}}
+                        horizontal
+                        showsHorizontalScrollIndicator={true}
+                    >
+                        {this.state.videos.map(image => (
+                            <View style={{ width: 280, height: 300, flexDirection: 'row', margin: 10}}>
+                                <Image
+                                    style={{ width: 280, height: 300, position: 'absolute', borderRadius: 10}}
+                                    source={{ uri: image.thumbnail }}
+                                />
+                                <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>
+                                    <Text style={{ color: '#85DAF7', fontSize: 20, margin: 6 }}>Abraxas Saint-Honoré</Text>
+                                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                        <Icon name={'map-marker-outline'} type={'material-community'} />
+                                        <Text style={{ color: 'black', margin: 6 }}>Paris, 11ème</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        ))}
+                    </ScrollView>
                 </View>
             </View>
         )
