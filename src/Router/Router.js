@@ -1,12 +1,15 @@
 import React from "react";
 import { createSwitchNavigator, createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
+import {Icon} from "react-native-elements";
+
 import Loading from "../Components/Loading";
 import SignUp from "../Containers/Auth/Register";
 import Login from "../Containers/Auth/Login";
 import HomeScreen from "../Containers/HomeScreen";
 import ProfileScreen from "../Containers/ProfileScreen";
 import SplashScreen from "../Containers/SplashScreen";
-import {Icon} from "react-native-elements";
+import NotificationScreen from "../Containers/NotificationScreen";
+
 
 const SplashStack = createStackNavigator({
 
@@ -25,6 +28,13 @@ const SplashStack = createStackNavigator({
 
 const HomeStack = createStackNavigator({
     Home: { screen: HomeScreen}
+})
+
+
+const NotificationStack = createStackNavigator({
+    Notification: { screen: NotificationScreen}
+},{
+    headerMode: 'none'
 })
 
 const ProfileStack = createStackNavigator({
@@ -53,7 +63,7 @@ const AppStack = createBottomTabNavigator({
         },
     },
     Notification: {
-        screen: HomeStack,
+        screen: NotificationStack,
         navigationOptions: {
             tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (

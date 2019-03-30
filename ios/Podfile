@@ -13,6 +13,8 @@ target 'inkiMobile' do
   pod 'React', :path => '../node_modules/react-native'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   target 'inkiMobile-tvOSTests' do
     inherit! :search_paths
@@ -22,6 +24,8 @@ target 'inkiMobile' do
     pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
     pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+    pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   end
 
