@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, Text, Image} from 'react-native'
+import {View, Text, ScrollView} from 'react-native'
 import {Avatar, Icon, Rating} from 'react-native-elements'
 import LinearGradient from "react-native-linear-gradient";
 import CardView from "react-native-cardview";
@@ -21,7 +21,7 @@ class ProfileScreen extends Component {
         return (
             <View style={{flex: 1}}>
                 <LinearGradient colors={['#85DAF7', '#FD7495']} style={{height: '40%', borderBottomLeftRadius: 30, borderBottomRightRadius: 30}}>
-                    <View style={{flexDirection: 'row', alignItems: 'center', marginTop: '10%', marginLeft: '7%'}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center', marginTop: '15%', marginLeft: '7%'}}>
                         <Avatar
                             rounded
                             size={"large"}
@@ -53,9 +53,11 @@ class ProfileScreen extends Component {
                                     imageSize={20}
                                     onFinishRating={this.ratingCompleted}
                                 />
-                                <View style={{marginTop: '5%', height: '60%'}}>
+                                <View style={{marginTop: '2%', height: '70%'}}>
                                     <Text style={{fontSize: 16}}>Description :</Text>
-                                    <Text style={{textAlign: 'center', marginTop: 10}}>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</Text>
+                                    <ScrollView>
+                                        <Text style={{textAlign: 'center', marginTop: 10}}>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</Text>
+                                    </ScrollView>
                                 </View>
                             </View>
                         </View>

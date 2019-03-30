@@ -9,6 +9,7 @@ import HomeScreen from "../Containers/HomeScreen";
 import ProfileScreen from "../Containers/ProfileScreen";
 import SplashScreen from "../Containers/SplashScreen";
 import NotificationScreen from "../Containers/NotificationScreen";
+import AgendaScreen from "../Containers/AgendaScreen";
 
 
 const SplashStack = createStackNavigator({
@@ -27,9 +28,16 @@ const SplashStack = createStackNavigator({
 })
 
 const HomeStack = createStackNavigator({
-    Home: { screen: HomeScreen}
+    Home: { screen: HomeScreen }
+}, {
+    headerMode: 'none'
 })
 
+const AgendaStack = createStackNavigator({
+    Notification: { screen: AgendaScreen}
+},{
+    headerMode: 'none'
+})
 
 const NotificationStack = createStackNavigator({
     Notification: { screen: NotificationScreen}
@@ -54,7 +62,7 @@ const AppStack = createBottomTabNavigator({
         },
     },
     Agenda: {
-        screen: HomeStack,
+        screen: AgendaStack,
         navigationOptions: {
             tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (

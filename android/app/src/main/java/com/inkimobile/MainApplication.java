@@ -3,6 +3,7 @@ package com.inkimobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.taluttasgiran.pickermodule.ReactNativePickerModulePackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.horcrux.svg.SvgPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePickerModulePackage(),
             new ReanimatedPackage(),
             new LinearGradientPackage(),
             new SvgPackage(),
