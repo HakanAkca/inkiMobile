@@ -131,6 +131,13 @@ class SignUp extends Component {
                                     titleStyle={{ color: '#F6799A'}}
                                     onPress={this.handleSignUp}
                             />
+
+                            <Button title="Retour"
+                                    containerStyle={{width: '60%', marginTop: 20}}
+                                    buttonStyle={{borderRadius: 20, backgroundColor: 'white', borderWidth: 2, borderColor: '#8DD2F0'}}
+                                    titleStyle={{ color: '#8DD2F0'}}
+                                    onPress={() => this.props.navigation.goBack()}
+                            />
                         </View>
                     </CardView>
                 </View>
