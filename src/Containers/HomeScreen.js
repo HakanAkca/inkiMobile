@@ -61,7 +61,7 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{ height: '45%', width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{ height: '50%', width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
                     <View style={{alignItems: 'center', width: '100%', marginTop: 50}}>
                         <Text style={{fontSize: 20}}> Que cherchez-vous ?</Text>
                         <View style={{width: '90%',marginTop: 20}}>
@@ -126,9 +126,9 @@ class HomeScreen extends Component {
                         showsHorizontalScrollIndicator={true}
                     >
                         {this.state.videos.map(image => (
-                            <View style={{ width: 280, height: 300, flexDirection: 'row', margin: 10}}>
+                            <View style={{ width: 280, height: 270, flexDirection: 'row', margin: 10}}>
                                 <Image
-                                    style={{ width: 280, height: 300, position: 'absolute', borderRadius: 10}}
+                                    style={{ width: 280, height: 270, position: 'absolute', borderRadius: 10}}
                                     source={{ uri: image.thumbnail }}
                                 />
                                 <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>
