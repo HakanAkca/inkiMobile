@@ -45,7 +45,7 @@ class HomeScreen extends Component {
             <View style={{ width: 300, height: 300, flexDirection: 'row', margin: 0}}>
                 <Image
                     style={{ width: 300, height: 300, position: 'absolute'}}
-                    source={require('../Assets/Images/salon.png')}
+                    source={require('../../assets/Images/salon.png')}
                 />
                 <View style={{ flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.95)', alignSelf: 'flex-end', alignItems: 'center', padding: 15}}>
                     <Text style={{ color: '#85DAF7', fontSize: 20, margin: 12 }}>Abraxas Saint-Honoré</Text>
@@ -61,9 +61,9 @@ class HomeScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{ height: '50%', width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
-                    <View style={{alignItems: 'center', width: '100%', marginTop: 50}}>
-                        <Text style={{fontSize: 20}}> Que cherchez-vous ?</Text>
+                <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
+                    <View style={{alignItems: 'center', width: '100%', marginTop: 10}}>
+                        <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Bold'}}> Que cherchez-vous ?</Text>
                         <View style={{width: '90%',marginTop: 20}}>
                             <Input
                                 placeholder='Où ?'
@@ -76,7 +76,7 @@ class HomeScreen extends Component {
                             <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
                                 <View style={{marginTop: 20, width: '45%'}}>
                                     <TouchableOpacity style={{flexDirection: 'row', borderRadius: 5, padding: 10, backgroundColor: '#FFFFFF', alignItems: 'center', justifyContent: 'center'}} onPress={() => {this.pickerRef.show()}}>
-                                        <Text style={{fontSize: 16, color: '#616161'}}>Créneau</Text>
+                                        <Text style={{fontSize: 17, color: '#616161', fontFamily: 'ProximaNova-Regular'}}>Créneau</Text>
                                         <View style={{marginTop: 5}}>
                                             <Icon iconStyle={{color: '#616161'}}  name={'chevron-down'} type={"material-community"} />
                                         </View>
@@ -84,7 +84,7 @@ class HomeScreen extends Component {
                                 </View>
                                 <View style={{marginTop: 20, width: '45%'}}>
                                     <TouchableOpacity style={{flexDirection: 'row', borderRadius: 5, padding: 10, backgroundColor: '#FFFFFF', alignItems: 'center',justifyContent: 'center'}} onPress={() => {this.pickerRef.show()}}>
-                                        <Text style={{fontSize: 16, color: '#616161'}}>Style</Text>
+                                        <Text style={{fontSize: 17, color: '#616161', fontFamily: 'ProximaNova-Regular'}}>Style</Text>
                                         <View style={{marginTop: 5}}>
                                             <Icon iconStyle={{color: '#616161'}} name={'chevron-down'} type={"material-community"} />
                                         </View>
@@ -107,7 +107,7 @@ class HomeScreen extends Component {
                                 <ReactNativePickerModule
                                     pickerRef={e => this.pickerRef = e}
                                     value={this.state.selectedValue}
-                                    title={"Select a language"}
+                                    title={"Choisir un créneau"}
                                     items={this.state.data}
                                     onValueChange={(index) => {
                                         this.setState({
@@ -126,9 +126,9 @@ class HomeScreen extends Component {
                             showsHorizontalScrollIndicator={true}
                         >
                             {this.state.videos.map(image => (
-                                <View style={{ width: 280, height: 270, flexDirection: 'row', margin: 10}}>
+                                <View style={{ width: 250, height: 250, flexDirection: 'row', margin: 10}}>
                                     <Image
-                                        style={{ width: 280, height: 270, position: 'absolute', borderRadius: 10}}
+                                        style={{ width: 250, height: 250, position: 'absolute', borderRadius: 10}}
                                         source={{ uri: image.thumbnail }}
                                     />
                                     <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>

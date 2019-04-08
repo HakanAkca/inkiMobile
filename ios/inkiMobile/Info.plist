@@ -70,6 +70,13 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>ProximaNova-Black.ttf</string>
+		<string>ProximaNova-Bold.ttf</string>
+		<string>ProximaNova-Extrabld.ttf</string>
+		<string>ProximaNova-Light.ttf</string>
+		<string>ProximaNova-Regular.ttf</string>
+		<string>ProximaNova-Semibold.ttf</string>
+		<string>ProximaNovaT-Thin.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -76,7 +76,7 @@ class SignUp extends Component {
             <KeyboardAvoidingView style={{height: '100%'}} behavior="padding" keyboardVerticalOffset={offset}>
 
                 <View style={styles.container}>
-                    <Image style={{width: imageSize, height: imageSize, resizeMode: 'contain', marginTop: marginTop}} source={require('../../Assets/Images/logo.png')}/>
+                    <Image style={{width: imageSize, height: imageSize, resizeMode: 'contain', marginTop: marginTop}} source={require('../../../assets/Images/logo.png')}/>
                     <Text style={{fontSize: 20, marginTop: 20}}>Inscription</Text>
                     <CardView style={{width: '95%', backgroundColor: 'white', marginTop: 20}} cardElevation={0} cardMaxElevation={0} cornerRadius={10}>
                         <View style={{width: '100%', padding: 20, alignItems: 'center', marginTop: 20}}>

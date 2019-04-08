@@ -29,8 +29,6 @@ const SplashStack = createStackNavigator({
 
 const HomeStack = createStackNavigator({
     Home: { screen: HomeScreen }
-}, {
-    headerMode: 'none'
 })
 
 const AgendaStack = createStackNavigator({

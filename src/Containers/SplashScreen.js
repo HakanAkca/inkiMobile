@@ -11,7 +11,7 @@ class SplashScreen extends Component {
         return(
             <LinearGradient colors={['#85DAF7', '#FD7495']} style={{height: '100%'}}>
             <View style={{alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-                <Image source={require('../Assets/Images/logo.png')} />
+                <Image source={require('../../assets/Images/logo.png')} />
                 <View style={{ width: '80%', alignItems: 'center', marginTop: 60}}>
                     <Text style={{fontSize: 24}}>Bienvenue !</Text>
                     <View style={{width: '100%'}}>
