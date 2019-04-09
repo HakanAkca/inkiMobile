@@ -10,6 +10,7 @@ import ProfileScreen from "../Containers/ProfileScreen";
 import SplashScreen from "../Containers/SplashScreen";
 import NotificationScreen from "../Containers/NotificationScreen";
 import AgendaScreen from "../Containers/AgendaScreen";
+import SalonScreen from "../Containers/SalonScreen";
 
 
 const SplashStack = createStackNavigator({
@@ -28,8 +29,26 @@ const SplashStack = createStackNavigator({
 })
 
 const HomeStack = createStackNavigator({
-    Home: { screen: HomeScreen }
+    Home: { screen: HomeScreen },
+    Salon: {
+        screen: SalonScreen,
+    }
 })
+
+HomeStack.navigationOptions = ({ navigation }) => {
+
+    let tabBarVisible = true;
+
+    let routeName = navigation.state.routes[navigation.state.index].routeName
+
+    if ( routeName == 'Salon' ) {
+        tabBarVisible = false
+    }
+
+    return {
+        tabBarVisible
+    }
+}
 
 const AgendaStack = createStackNavigator({
     Notification: { screen: AgendaScreen}

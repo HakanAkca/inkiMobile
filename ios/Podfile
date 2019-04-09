@@ -27,6 +27,7 @@ target 'inkiMobile' do
 
     pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
+
   end
 
   target 'inkiMobileTests' do

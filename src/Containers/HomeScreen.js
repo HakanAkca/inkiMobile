@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import {StyleSheet, Platform, Image, Text, View, TouchableOpacity, ScrollView, KeyboardAvoidingView} from 'react-native'
+import {StyleSheet, Platform, Image, Text, View, TouchableOpacity, ScrollView, AsyncStorage} from 'react-native'
 import firebase from 'react-native-firebase'
 import {Button, Card, Icon, Input, Slider} from "react-native-elements";
 import ReactNativePickerModule from 'react-native-picker-module'
 import LinearGradient from "react-native-linear-gradient";
-import Carousel from 'react-native-snap-carousel';
+import salon from "./data/home.json"
 
 class HomeScreen extends Component {
     state = {
         currentUser: [],
         selectedValue: null,
+        salon: [],
         data: [
             "Javascript",
             "Go",
@@ -33,8 +34,17 @@ class HomeScreen extends Component {
     componentDidMount() {
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value')
             .then((res) => {this.setState({currentUser: res._value})})
+
+        salon.map((item) => (
+            AsyncStorage.setItem('Salon', JSON.stringify(item))
+        ))
+        this.getSalon()
     }
 
+    async getSalon() {
+        const salon = await AsyncStorage.getItem('Salon')
+       this.setState({salon: salon})
+    }
 
     handleSnapToItem(index){
         console.log("snapped to ", index)
@@ -125,19 +135,23 @@ class HomeScreen extends Component {
                             horizontal
                             showsHorizontalScrollIndicator={true}
                         >
-                            {this.state.videos.map(image => (
-                                <View style={{ width: 250, height: 250, flexDirection: 'row', margin: 10}}>
+                            {salon.map(item => (
+                                <View key={item.id} style={{ width: 250, height: 250, flexDirection: 'row', margin: 10}}>
                                     <Image
                                         style={{ width: 250, height: 250, position: 'absolute', borderRadius: 10}}
-                                        source={{ uri: image.thumbnail }}
+                                        source={{ uri: item.thumbnail }}
                                     />
-                                    <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>
-                                        <Text style={{ color: '#85DAF7', fontSize: 20, margin: 6 }}>Abraxas Saint-Honoré</Text>
-                                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                            <Icon name={'map-marker-outline'} type={'material-community'} />
-                                            <Text style={{ color: 'black', margin: 6 }}>Paris, 11ème</Text>
+                                        <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>
+
+                                            <TouchableOpacity style={{alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Salon', {data: item})}>
+                                                <Text style={{ color: '#85DAF7', fontSize: 20, margin: 6 }}>Abraxas Saint-Honoré</Text>
+                                                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                                    <Icon name={'map-marker-outline'} type={'material-community'} />
+                                                    <Text style={{ color: 'black', margin: 6 }}>Paris, 11ème</Text>
+                                                </View>
+
+                                            </TouchableOpacity>
                                         </View>
-                                    </View>
                                 </View>
                             ))}
                         </ScrollView>
