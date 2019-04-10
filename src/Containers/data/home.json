@@ -4,26 +4,37 @@
   "last_name": "Penddreth",
   "email": "jpenddreth0@census.gov",
   "gender": "Female",
-  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg"
+  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
+  "slot_1": "09:00 - 10:00",
+  "slot_2": "12:00 - 17:00",
+  "slot_3": "17:00 - 22:00"
 }, {
   "id": 2,
   "first_name": "Giavani",
   "last_name": "Frediani",
   "email": "gfrediani1@senate.gov",
-  "gender": "Male",
-  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg"
+  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
+  "slot_1": "09:00 - 10:00",
+  "slot_2": "12:00 - 17:00",
+  "slot_3": "17:00 - 22:00"
 }, {
   "id": 3,
   "first_name": "Noell",
   "last_name": "Bea",
   "email": "nbea2@imageshack.us",
   "gender": "Female",
-  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg"
+  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
+  "slot_1": "09:00 - 10:00",
+  "slot_2": "12:00 - 17:00",
+  "slot_3": "17:00 - 22:00"
 }, {
   "id": 4,
   "first_name": "Willard",
   "last_name": "Valek",
   "email": "wvalek3@vk.com",
   "gender": "Male",
-  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg"
+  "thumbnail": "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
+  "slot_1": "09:00 - 10:00",
+  "slot_2": "12:00 - 17:00",
+  "slot_3": "17:00 - 22:00"
 }]

@@ -11,6 +11,7 @@ import SplashScreen from "../Containers/SplashScreen";
 import NotificationScreen from "../Containers/NotificationScreen";
 import AgendaScreen from "../Containers/AgendaScreen";
 import SalonScreen from "../Containers/SalonScreen";
+import Booking from "../Containers/Booking/Booking";
 
 
 const SplashStack = createStackNavigator({
@@ -32,7 +33,8 @@ const HomeStack = createStackNavigator({
     Home: { screen: HomeScreen },
     Salon: {
         screen: SalonScreen,
-    }
+    },
+    Booking: {screen: Booking}
 })
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -41,7 +43,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'Salon' ) {
+    if ( routeName == 'Salon' || routeName == 'Booking' ) {
         tabBarVisible = false
     }
 

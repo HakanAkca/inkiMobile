@@ -10,7 +10,6 @@ class HomeScreen extends Component {
     state = {
         currentUser: [],
         selectedValue: null,
-        salon: [],
         data: [
             "Javascript",
             "Go",
@@ -20,30 +19,77 @@ class HomeScreen extends Component {
             "C#",
             "PHP"
         ],
-        videos: [
-            {
-                thumbnail: "https://img.youtube.com/vi/D9ioyEvdggk/hqdefault.jpg",
-            }, {
-                thumbnail: "https://img.youtube.com/vi/sNPnbI1arSE/hqdefault.jpg",
-            }, {
-                thumbnail: "https://img.youtube.com/vi/VOgFZfRVaww/hqdefault.jpg",
-            }
-        ]
+        salons: []
     }
 
     componentDidMount() {
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value')
             .then((res) => {this.setState({currentUser: res._value})})
 
-        salon.map((item) => (
-            AsyncStorage.setItem('Salon', JSON.stringify(item))
-        ))
-        this.getSalon()
-    }
+        firebase.database().ref('/salons').once('value')
+            .then((res) => {this.setState({salons: res._value})})
 
-    async getSalon() {
-        const salon = await AsyncStorage.getItem('Salon')
-       this.setState({salon: salon})
+        {/*firebase.database().ref('/salons').set(
+            [{
+                "id": 1,
+                "name": "Toutatis Tatto",
+                "email": "jpenddreth0@census.gov",
+                "thumbnail": "https://www.megustattoo.fr/wp-content/uploads/2017/06/megustattoo-salle-2.jpg",
+                "slot_1": "09:00 - 10:00",
+                "slot_2": "12:00 - 17:00",
+                "slot_3": "17:00 - 22:00",
+                "description": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker",
+                "city": "Paris",
+                "zipCodeShort": "75",
+                "zipCodeFull": "75011",
+                "Address": "95 Avenue Parmentier"
+            }, {
+                "id": 2,
+                "name": "Paris Tatto",
+                "email": "gfrediani1@senate.gov",
+                "thumbnail": "https://www.megustattoo.fr/wp-content/uploads/2017/06/megustattoo-salle-2.jpg",
+                "slot_1": "09:00 - 10:00",
+                "slot_2": "12:00 - 17:00",
+                "slot_3": "17:00 - 22:00",
+                "description": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker",
+                "city": "Paris",
+                "zipCodeShort": "75",
+                "zipCodeFull": "75011",
+                "Address": "95 Avenue Parmentier"
+            }, {
+                "id": 3,
+                "name": "Abraxas Saint-Honoré",
+                "email": "nbea2@imageshack.us",
+                "thumbnail": "https://www.megustattoo.fr/wp-content/uploads/2017/06/megustattoo-salle-2.jpg",
+                "slot_1": "09:00 - 10:00",
+                "slot_2": "12:00 - 17:00",
+                "slot_3": "17:00 - 22:00",
+                "description": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker",
+                "city": "Paris",
+                "zipCodeShort": "75",
+                "zipCodeFull": "75011",
+                "Address": "95 Avenue Parmentier"
+            }, {
+                "id": 4,
+                "name": "beethoven Tatto",
+                "email": "wvalek3@vk.com",
+                "thumbnail": "https://www.megustattoo.fr/wp-content/uploads/2017/06/megustattoo-salle-2.jpg",
+                "slot_1": "09:00 - 10:00",
+                "slot_2": "12:00 - 17:00",
+                "slot_3": "17:00 - 22:00",
+                "description": "Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker",
+                "city": "Paris",
+                "zipCodeShort": "75",
+                "zipCodeFull": "75011",
+                "Address": "95 Avenue Parmentier"
+            }]
+        ).then((data)=>{
+            //success callback
+            console.log('data ' , data)
+        }).catch((error)=>{
+            //error callback
+            console.log('error ' , error)
+        })*/}
     }
 
     handleSnapToItem(index){
@@ -135,7 +181,7 @@ class HomeScreen extends Component {
                             horizontal
                             showsHorizontalScrollIndicator={true}
                         >
-                            {salon.map(item => (
+                            {this.state.salons.map(item => (
                                 <View key={item.id} style={{ width: 250, height: 250, flexDirection: 'row', margin: 10}}>
                                     <Image
                                         style={{ width: 250, height: 250, position: 'absolute', borderRadius: 10}}
@@ -144,10 +190,10 @@ class HomeScreen extends Component {
                                         <View style={{ flex: 1, backgroundColor: 'rgba(250, 250, 250, 0.99)', alignSelf: 'flex-end', alignItems: 'center', borderBottomStartRadius: 10, borderBottomEndRadius: 10}}>
 
                                             <TouchableOpacity style={{alignItems: 'center'}} onPress={() => this.props.navigation.navigate('Salon', {data: item})}>
-                                                <Text style={{ color: '#85DAF7', fontSize: 20, margin: 6 }}>Abraxas Saint-Honoré</Text>
+                                                <Text style={{ color: '#85DAF7', fontSize: 20, margin: 6 }}>{item.name}</Text>
                                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                                     <Icon name={'map-marker-outline'} type={'material-community'} />
-                                                    <Text style={{ color: 'black', margin: 6 }}>Paris, 11ème</Text>
+                                                    <Text style={{ color: 'black', margin: 6 }}>{item.city}, {item.zipCodeShort}ème</Text>
                                                 </View>
 
                                             </TouchableOpacity>

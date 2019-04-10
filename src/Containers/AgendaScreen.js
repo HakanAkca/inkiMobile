@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    AsyncStorage
 } from 'react-native';
 import {Agenda, LocaleConfig} from 'react-native-calendars';
 
@@ -21,6 +22,11 @@ export default class AgendaScreen extends Component {
         this.state = {
             items: []
         }
+    }
+
+    async componentDidMount() {
+        const ok = await AsyncStorage.getItem('agenda')
+        console.log(ok)
     }
 
     render() {
