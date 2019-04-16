@@ -16,7 +16,8 @@ class Booking extends Component {
             checked_1: false,
             checked_2: false,
             checked_3: false,
-            date: ""
+            date: "",
+            confirmationModal: null
         };
 
         this.onDayPress = this.onDayPress.bind(this);
@@ -45,15 +46,19 @@ class Booking extends Component {
         const salon = this.props.navigation.state.params.data
 
         if (data.checked_1 === true) {
-           await AsyncStorage.setItem('agenda', [salon.slot_1, this.state.date])
+            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_1, date: this.state.date}))
+            this.setState({confirmationModal: true})
+        } else if (data.checked_2) {
+            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_2, date: this.state.date}))
+            this.setState({confirmationModal: true})
+        } else {
+            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_3, date: this.state.date}))
+            this.setState({confirmationModal: true})
         }
-
     }
 
     render() {
         const data = this.props.navigation.state.params.data
-
-        console.log(data)
 
         return (
             <View style={styles.container}>

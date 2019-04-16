@@ -1,33 +1,35 @@
 import React, { Component } from 'react'
-import {StyleSheet, Platform, Image, Text, View, TouchableOpacity, ScrollView, AsyncStorage} from 'react-native'
+import {StyleSheet, Platform, Image, Text, View, TouchableOpacity, ScrollView, FlatList, AsyncStorage} from 'react-native'
 import firebase from 'react-native-firebase'
-import {Button, Card, Icon, Input, Slider} from "react-native-elements";
+import {Button, Card, Icon, Input, SearchBar, Slider, ListItem, Avatar} from "react-native-elements";
 import ReactNativePickerModule from 'react-native-picker-module'
 import LinearGradient from "react-native-linear-gradient";
 import salon from "./data/home.json"
 
 class HomeScreen extends Component {
-    state = {
-        currentUser: [],
-        selectedValue: null,
-        data: [
-            "Javascript",
-            "Go",
-            "Java",
-            "Kotlin",
-            "C++",
-            "C#",
-            "PHP"
-        ],
-        salons: []
+
+    constructor() {
+        super()
+
+        this.state = {
+            currentUser: [],
+            selectedValue: null,
+            data: [],
+            salons: [],
+            text: ""
+
+        }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value')
             .then((res) => {this.setState({currentUser: res._value})})
 
         firebase.database().ref('/salons').once('value')
             .then((res) => {this.setState({salons: res._value})})
+
+        const value = await AsyncStorage.getItem('agenda');
+        console.log(value)
 
         {/*firebase.database().ref('/salons').set(
             [{
@@ -114,20 +116,61 @@ class HomeScreen extends Component {
         );
     }
 
+
+    searchFilterFunction = (text) => {
+                    console.log(text)
+        this.setState({
+            text: text,
+        });
+
+        const newData = this.state.salons.filter(item => {
+            const itemData = ` ${item.name.toUpperCase()}`;
+            const textData = text.toUpperCase();
+
+            return itemData.indexOf(textData) > -1;
+        });
+
+        this.setState( {data: newData });
+
+        if (this.state.text.length === 1) {
+            this.setState({data: []})
+        }
+
+    };
+
     render() {
+        console.log(this.state.data)
         return (
             <View style={styles.container}>
                 <LinearGradient colors={['#DBDEEA', '#DBDEEA']} style={{width: '100%', alignItems: 'center', borderBottomLeftRadius: 10, borderBottomRightRadius: 10}}>
                     <View style={{alignItems: 'center', width: '100%', marginTop: 10}}>
                         <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Bold'}}> Que cherchez-vous ?</Text>
                         <View style={{width: '90%',marginTop: 20}}>
-                            <Input
-                                placeholder='Où ?'
-                                leftIcon={
-                                    <Icon name={'map-marker-outline'} type={'material-community'} />
-                                }
-                                inputContainerStyle={{borderBottomColor: 'transparent'}}
-                                containerStyle={{borderRadius: 5, backgroundColor: 'white'}}
+                            <SearchBar
+                                placeholder="Type Here..."
+                                lightTheme
+                                round
+                                onChangeText={(text) => this.searchFilterFunction(text)}
+                                autoCorrect={false}
+                                value={this.state.text}
+                            />
+                            <FlatList
+                                data={this.state.data}
+                                renderItem={({ item }) => (
+                                    <ListItem
+                                        leftAvatar={
+                                            <Avatar
+                                                size="large"
+                                                source={{ uri: item.thumbnail }}
+                                            />
+                                        }
+                                        title={item.name}
+                                        containerStyle={{ borderBottomWidth: 0 }}
+                                    />
+                                )}
+                                keyExtractor={item => item.name}
+                                ItemSeparatorComponent={this.renderSeparator}
+                                ListHeaderComponent={this.renderHeader}
                             />
                             <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between'}}>
                                 <View style={{marginTop: 20, width: '45%'}}>
