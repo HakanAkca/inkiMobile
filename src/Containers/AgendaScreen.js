@@ -3,103 +3,100 @@ import {
     Text,
     View,
     StyleSheet,
-    AsyncStorage
+    AsyncStorage,
+    Dimensions,
 } from 'react-native';
-import {Agenda, LocaleConfig} from 'react-native-calendars';
+import firebase from 'react-native-firebase'
+import EventCalendar from 'react-native-events-calendar';
 
-LocaleConfig.locales['fr'] = {
-    monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-    monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-    dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-    dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.']
-};
+let { width } = Dimensions.get('window');
 
-LocaleConfig.defaultLocale = 'fr';
 
 export default class AgendaScreen extends Component {
+
+
     constructor(props) {
         super(props);
         this.state = {
-            items: []
-        }
+            events: [
+                {
+                    start: '2019-05-06 00:00:00',
+                    end: '2019-01-01 02:00:00',
+                    title: 'New Year Party',
+                    summary: 'xyz Location',
+                }, {
+                    start: '2019-01-01 01:00:00',
+                    end: '2019-01-01 02:00:00',
+                    title: 'New Year Wishes',
+                    summary: 'Call to every one',
+                },
+                {
+                    start: '2019-01-02 00:30:00',
+                    end: '2019-01-02 01:30:00',
+                    title: 'Parag Birthday Party',
+                    summary: 'Call him',
+                },
+                {
+                    start: '2019-05-07 01:30:00',
+                    end: '2019-05-07 02:20',
+                    title: 'My Birthday Party',
+                    summary: 'Lets Enjoy',
+                },
+                {
+                    start: '2019-05-07 10:10:00',
+                    end: '2019-05-07 11:40:00',
+                    title: 'Engg Expo 2019',
+                    summary: 'Expoo Vanue not confirm',
+                },
+            ],
+            bookings: []
+        };
     }
 
-    async componentDidMount() {
-        const ok = await AsyncStorage.getItem('agenda')
-        console.log(ok)
+    componentDidMount() {
+        firebase.database().ref('/bookings').on('value', snapshot => {
+            let data = snapshot.val();
+            let bookings = Object.values(data);
+            this.setState({ bookings });
+        });
+    }
+
+    eventClicked(event) {
+        //On Click oC a event showing alert from here
+        alert(JSON.stringify(event));
     }
 
     render() {
+
+        console.log(this.state.bookings)
+
         return (
-            <Agenda
-                items={this.state.items}
-                loadItemsForMonth={this.loadItems.bind(this)}
-                selected={'2017-05-16'}
-                renderItem={this.renderItem.bind(this)}
-                renderEmptyDate={this.renderEmptyDate.bind(this)}
-                rowHasChanged={this.rowHasChanged.bind(this)}
-                // markingType={'period'}
-                // markedDates={{
-                //    '2017-05-08': {textColor: '#666'},
-                //    '2017-05-09': {textColor: '#666'},
-                //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
-                //    '2017-05-21': {startingDay: true, color: 'blue'},
-                //    '2017-05-22': {endingDay: true, color: 'gray'},
-                //    '2017-05-24': {startingDay: true, color: 'gray'},
-                //    '2017-05-25': {color: 'gray'},
-                //    '2017-05-26': {endingDay: true, color: 'gray'}}}
-                // monthFormat={'yyyy'}
-                // theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-                //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
-            />
+            <View style={{flex: 1, marginTop: 20}}>
+                <EventCalendar
+                    eventTapped={this.eventClicked.bind(this)}
+                    //Function on event press
+                    events={this.state.bookings}
+                    //passing the Array of event
+                    width={width}
+                    //Container width
+                    size={60}
+                    styles={{
+                        container: {
+                            backgroundColor: 'white'
+                        },
+                        event: {
+                            opacity: 0.5
+                        }
+                    }}
+                    //number of date will render before and after initDate
+                    //(default is 30 will render 30 day before initDate and 29 day after initDate)
+                    //show initial date (default is today)
+                    scrollToFirst
+                    format24h
+                    //scroll to first event of the day (default true)
+                />
+            </View>
         );
-    }
-
-    loadItems(day) {
-        setTimeout(() => {
-            for (let i = -15; i < 85; i++) {
-                const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-                const strTime = this.timeToString(time);
-                if (!this.state.items[strTime]) {
-                    this.state.items[strTime] = [];
-                    const numItems = Math.floor(Math.random() * 5);
-                    for (let j = 0; j < numItems; j++) {
-                        this.state.items[strTime].push({
-                            name: 'Item for ' + strTime,
-                            height: Math.max(50, Math.floor(Math.random() * 150))
-                        });
-                    }
-                }
-            }
-            //console.log(this.state.items);
-            const newItems = {};
-            Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
-            this.setState({
-                items: newItems
-            });
-        }, 1000);
-        // console.log(`Load Items for ${day.year}-${day.month}`);
-    }
-
-    renderItem(item) {
-        return (
-            <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
-        );
-    }
-
-    renderEmptyDate() {
-        return (
-            <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
-        );
-    }
-
-    rowHasChanged(r1, r2) {
-        return r1.name !== r2.name;
-    }
-
-    timeToString(time) {
-        const date = new Date(time);
-        return date.toISOString().split('T')[0];
     }
 }
 

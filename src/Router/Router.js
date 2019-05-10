@@ -12,6 +12,7 @@ import NotificationScreen from "../Containers/NotificationScreen";
 import AgendaScreen from "../Containers/AgendaScreen";
 import SalonScreen from "../Containers/SalonScreen";
 import Booking from "../Containers/Booking/Booking";
+import ChatScreen from "../Containers/ChatScreen";
 
 
 const SplashStack = createStackNavigator({
@@ -59,10 +60,23 @@ const AgendaStack = createStackNavigator({
 })
 
 const NotificationStack = createStackNavigator({
-    Notification: { screen: NotificationScreen}
-},{
-    headerMode: 'none'
+    Notification: { screen: NotificationScreen},
+    Chat: { screen: ChatScreen}
 })
+
+NotificationStack.navigationOptions = ({ navigation }) => {
+    let header = false;
+
+    let routeName = navigation.state.routes[navigation.state.index].routeName
+
+    if ( routeName == 'Chat' ) {
+        header = true
+    }
+
+    return {
+        header
+    }
+}
 
 const ProfileStack = createStackNavigator({
     Profile: { screen: ProfileScreen}

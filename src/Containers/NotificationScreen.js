@@ -9,6 +9,9 @@ const numberOfTabs = 2;
 
 
 class NotificationScreen extends Component {
+    static navigationOptions = ({ navigation }) => ({
+        header: null
+    })
 
     constructor() {
         super()

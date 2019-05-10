@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {View, Text, ScrollView, AsyncStorage} from 'react-native'
 import {Calendar} from "react-native-calendars";
 import {CheckBox, ListItem, Button} from "react-native-elements";
+import firebase from 'react-native-firebase'
 
 
 class Booking extends Component {
@@ -43,16 +44,33 @@ class Booking extends Component {
 
     async validateBooking() {
         const data = this.state
-        const salon = this.props.navigation.state.params.data
+        const salon = this.props.navigation.state.params.data;
 
         if (data.checked_1 === true) {
-            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_1, date: this.state.date}))
+            firebase.database().ref('/bookings').push({
+                title: this.props.navigation.state.params.data.name,
+                start: this.state.date + ' ' + salon.slot_1,
+                end: this.state.date + ' ' +  salon.slot_2
+            })
+
+            //await AsyncStorage.setItem('agenda', JSON.stringify({title: this.props.navigation.state.params.data.name, start: this.state.date + ' ' + salon.slot_1, end: this.state.date + ' ' +  salon.slot_2 }))
             this.setState({confirmationModal: true})
         } else if (data.checked_2) {
-            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_2, date: this.state.date}))
+            firebase.database().ref('/bookings').push({
+                title: this.props.navigation.state.params.data.name,
+                start: this.state.date + ' ' + salon.slot_3,
+                end: this.state.date + ' ' +  salon.slot_4
+            })
+
+            //await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_2, date: this.state.date}))
             this.setState({confirmationModal: true})
         } else {
-            await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_3, date: this.state.date}))
+            firebase.database().ref('/bookings').push({
+                title: this.props.navigation.state.params.data.name,
+                start: this.state.date + ' ' + salon.slot_5,
+                end: this.state.date + ' ' +  salon.slot_6
+            })
+            //await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_3, date: this.state.date}))
             this.setState({confirmationModal: true})
         }
     }
@@ -80,7 +98,7 @@ class Booking extends Component {
                         uncheckedIcon='circle-o'
                         checked={this.state.checked_1}
                         onPress={() => this.checkSlot1()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_1}</Text>}
+                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_1} - {data.slot_2}</Text>}
                         containerStyle={{borderWidth: 0}}
                     />
                     <CheckBox
@@ -91,7 +109,7 @@ class Booking extends Component {
                         uncheckedIcon='circle-o'
                         checked={this.state.checked_2}
                         onPress={() => this.checkSlot2()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_2}</Text>}
+                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_3} - {data.slot_4}</Text>}
                         containerStyle={{borderWidth: 0}}
                     />
                     <CheckBox
@@ -102,7 +120,7 @@ class Booking extends Component {
                         uncheckedIcon='circle-o'
                         checked={this.state.checked_3}
                         onPress={() => this.checkSlot3()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_3}</Text>}
+                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_5} - {data.slot_6}</Text>}
                         containerStyle={{borderWidth: 0}}
                     />
 
