@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import {Image, ScrollView, Text, TouchableOpacity, View} from 'react-native'
+import {Image, ScrollView, Text, TouchableOpacity, View, ImageBackground} from 'react-native'
 import LinearGradient from "react-native-linear-gradient";
 import {Avatar, Button, Icon, Rating} from "react-native-elements";
 import CardView from "react-native-cardview";
-import salon from "./data/home";
 import firebase from "react-native-firebase";
+import Modal from 'react-native-modal';
 
 class SalonScreen extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -15,7 +15,9 @@ class SalonScreen extends Component {
         super(props)
 
         this.state = {
-            photos: []
+            photos: [],
+            modalVisible: null,
+            url: ""
         }
     }
 
@@ -27,10 +29,15 @@ class SalonScreen extends Component {
         });
     }
 
+
+    showImageInModal(url) {
+        this.setState({modalVisible: true})
+        this.setState({url})
+    }
+
     render() {
 
         const data = this.props.navigation.state.params.data
-
         return (
             <View style={{flex: 1}}>
                 <LinearGradient colors={['#85DAF7', '#FD7495']}
@@ -116,13 +123,14 @@ class SalonScreen extends Component {
                                 console.log(item)
                                 if (item.id === data.id) {
                                     return (
-                                        <View key={index}
-                                              style={{width: 126, height: 110, flexDirection: 'row', marginTop: 10}}>
-                                            <Image
-                                                style={{width: 126, height: 110, resizeMode: 'cover'}}
-                                                source={{uri: item.url}}
-                                            />
-                                        </View>
+                                        <TouchableOpacity key={index} onPress={() => this.showImageInModal(item.url)}>
+                                            <View style={{width: 126, height: 110, flexDirection: 'row', marginTop: 10}}>
+                                                <Image
+                                                    style={{width: 126, height: 110, resizeMode: 'cover'}}
+                                                    source={{uri: item.url}}
+                                                />
+                                            </View>
+                                        </TouchableOpacity>
                                     )
                                 }
                             })
@@ -138,9 +146,32 @@ class SalonScreen extends Component {
                         onPress={() => this.props.navigation.navigate('Booking', {data: data})} title="Reserver"/>
                 </View>
 
+                <Modal isVisible={this.state.modalVisible} >
+                    <TouchableOpacity style={{alignItems: 'flex-end'}} onPress={() => this.setState({modalVisible: null})}>
+                        <Text style={{color: '#FFFFFF', alignItems: 'flex-end'}}>X</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.setState({modalVisible: null})}>
+                        <ImageBackground source={{uri: this.state.url}} style={{width: '100%', height: '80%'}} />
+                    </TouchableOpacity>
+                </Modal>
             </View>
         )
     }
+}
+
+const styles = {
+    content: {
+        backgroundColor: 'red',
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    contentTitle: {
+        fontSize: 20,
+        marginBottom: 12,
+    },
 }
 
 export default SalonScreen

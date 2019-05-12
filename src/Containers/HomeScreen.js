@@ -194,7 +194,7 @@ class HomeScreen extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <View style={{alignItems: 'center', width: '100%'}}>
-                        <View style={{width: '90%', marginTop: 20}}>
+                        <View style={{width: '90%', marginTop: 30}}>
                             <SearchBar
                                 placeholder="Dites nous ce que vous cherchez..."
                                 lightTheme
@@ -214,7 +214,8 @@ class HomeScreen extends Component {
                             <FlatList
                                 data={this.state.data}
                                 renderItem={({item}) => (
-                                    <TouchableOpacity>
+                                    console.log(item),
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Salon', {data: item})}>
                                         <ListItem
                                             leftAvatar={
                                                 <Avatar
@@ -227,8 +228,12 @@ class HomeScreen extends Component {
                                             subtitle={
                                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                                     <Icon name={'map-marker-outline'} type={'material-community'}/>
-                                                    <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Regular'}}>Paris,
-                                                        8ème</Text>
+                                                    <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Regular'}}>
+                                                        {item.city}
+                                                        {
+                                                           item.zipCodeShort ? ", " + item.zipCodeShort + " ème" : ""
+                                                        }
+                                                    </Text>
                                                 </View>
                                             }
                                             containerStyle={{borderBottomWidth: 0}}
