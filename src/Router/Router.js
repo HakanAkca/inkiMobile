@@ -1,4 +1,5 @@
 import React from "react";
+import {View, Text} from 'react-native'
 import { createSwitchNavigator, createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
 import {Icon} from "react-native-elements";
 
@@ -54,9 +55,14 @@ HomeStack.navigationOptions = ({ navigation }) => {
 }
 
 const AgendaStack = createStackNavigator({
-    Notification: { screen: AgendaScreen}
-},{
-    headerMode: 'none'
+    Notification: {
+        screen: AgendaScreen,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Agenda / Reservation</Text>
+                </View>
+        }}
 })
 
 const NotificationStack = createStackNavigator({

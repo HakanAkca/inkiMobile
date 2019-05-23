@@ -353,7 +353,8 @@ class HomeScreen extends Component {
                                                 <Text style={{
                                                     fontSize: 16,
                                                     fontFamily: 'ProximaNova-Regular',
-                                                    color: '#85DAF7'
+                                                    color: '#85DAF7',
+                                                    width: 200
                                                 }}>{item.name}</Text>
                                                 <Text style={{
                                                     fontSize: 14,

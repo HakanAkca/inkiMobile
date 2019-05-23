@@ -5,11 +5,20 @@ import {
     StyleSheet,
     AsyncStorage,
     Dimensions,
+    Image
 } from 'react-native';
+import {Calendar, LocaleConfig} from 'react-native-calendars';
 import firebase from 'react-native-firebase'
-import EventCalendar from 'react-native-events-calendar';
 
 let { width } = Dimensions.get('window');
+
+LocaleConfig.locales['fr'] = {
+    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+    dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.']
+};
+LocaleConfig.defaultLocale = 'fr';
 
 
 export default class AgendaScreen extends Component {
@@ -49,7 +58,8 @@ export default class AgendaScreen extends Component {
                     summary: 'Expoo Vanue not confirm',
                 },
             ],
-            bookings: []
+            bookings: [],
+            activeDay: new Date()
         };
     }
 
@@ -61,40 +71,83 @@ export default class AgendaScreen extends Component {
         });
     }
 
-    eventClicked(event) {
-        //On Click oC a event showing alert from here
-        alert(JSON.stringify(event));
-    }
-
     render() {
-
-        console.log(this.state.bookings)
+        const {activeDay} = this.state;
+        let y = activeDay.getFullYear(),
+            m = activeDay.getMonth() + 1,
+            d = activeDay.getDate();
+        m = m < 10 ? `0${m}` : m;
+        d = d < 10 ? `0${d}` : d;
+        //console.log(`${year}-${m}-${date}`);
 
         return (
             <View style={{flex: 1, marginTop: 20}}>
-                <EventCalendar
-                    eventTapped={this.eventClicked.bind(this)}
-                    //Function on event press
-                    events={this.state.bookings}
-                    //passing the Array of event
-                    width={width}
-                    //Container width
-                    size={60}
-                    styles={{
-                        container: {
-                            backgroundColor: 'white'
-                        },
-                        event: {
-                            opacity: 0.5
+                <Calendar
+                    theme={{
+                        calendarBackground: '#FFFFFF',
+                        todayTextColor: '#1a1a1a',
+                        textMonthColor: '#97424D',
+                        selectedDayTextColor: 'white',
+                        selectedDayBackgroundColor: '#F56B74',
+                    }}
+                    markedDates={{
+                        [`${y}-${m}-${d}`]: {
+                            selected: true,
+                            disableTouchEvent: true,
                         }
                     }}
-                    //number of date will render before and after initDate
-                    //(default is 30 will render 30 day before initDate and 29 day after initDate)
-                    //show initial date (default is today)
-                    scrollToFirst
-                    format24h
-                    //scroll to first event of the day (default true)
+                    minDate={'2019-01-01'}
+                    maxDate={new Date().setDate(new Date().getDate() + 365)}
+                    onDayPress={(day) => {
+                        this.setState({activeDay: new Date(day.dateString)})
+                    }}
+                    onDayLongPress={(day) => {
+                        const toDay = new Date();
+                        if (day.timestamp >= toDay.getMilliseconds()) {
+                            console.log('Date is good');
+                        } else {
+                            console.log('Date is not good');
+                        }
+                    }}
+                    onMonthChange={(month) => {
+                        console.log('month changed', month)
+                    }}
+                    hideArrows={false}
+                    renderArrow={(direction) => (
+                        direction === 'left' ? <Image source={require('../../assets/Images/left.png')}/> :
+                            <Image source={require('../../assets/Images/right.png')}/>
+                    )}
+                    hideExtraDays={false}
+                    disableMonthChange={false}
+                    firstDay={1}
+                    hideDayNames={false}
+                    showWeekNumbers={false}
+                    onPressArrowLeft={substractMonth => substractMonth()}
+                    onPressArrowRight={addMonth => addMonth()}
                 />
+                <View>
+                    {
+                        this.state.bookings.map((item, index) => {
+                            let active = new Date(item.start)
+
+                            let year = active.getFullYear(),
+                                month = active.getMonth() + 1,
+                                date = active.getDate();
+                            month = month < 10 ? `0${month}` : month;
+                            date = date < 10 ? `0${date}` : date;
+
+                            return (
+                                <View key={index}>
+                                    {
+                                        `${y}-${m}-${d}` === `${year}-${month}-${date}` &&
+                                            <Text>{item.title}</Text>
+
+                                    }
+                                </View>
+                            )
+                        })
+                    }
+                </View>
             </View>
         );
     }
