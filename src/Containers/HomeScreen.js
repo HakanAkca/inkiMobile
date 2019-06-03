@@ -181,11 +181,6 @@ class HomeScreen extends Component {
         });
 
         this.setState({data: newData});
-
-        if (this.state.text.length === 1) {
-            this.setState({data: []})
-        }
-
     };
 
     render() {
@@ -196,6 +191,7 @@ class HomeScreen extends Component {
                     <View style={{alignItems: 'center', width: '100%'}}>
                         <View style={{width: '90%', marginTop: 30}}>
                             <SearchBar
+                                onClear={() => this.setState({data: []})}
                                 placeholder="Dites nous ce que vous cherchez..."
                                 lightTheme
                                 round
@@ -214,7 +210,6 @@ class HomeScreen extends Component {
                             <FlatList
                                 data={this.state.data}
                                 renderItem={({item}) => (
-                                    console.log(item),
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Salon', {data: item})}>
                                         <ListItem
                                             leftAvatar={
@@ -224,10 +219,10 @@ class HomeScreen extends Component {
                                                     source={{uri: item.thumbnail}}
                                                 />
                                             }
-                                            title={item.name}
+                                            title={<View><Text style={{fontSize: 16}}>{item.name}</Text></View>}
                                             subtitle={
-                                                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                                                    <Icon name={'map-marker-outline'} type={'material-community'}/>
+                                                <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: -2.5}}>
+                                                    <Icon size={18} name={'map-marker-outline'} type={'material-community'}/>
                                                     <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Regular'}}>
                                                         {item.city}
                                                         {
@@ -256,7 +251,7 @@ class HomeScreen extends Component {
                                     borderRadius: 20
                                 }}/>
 
-                                <Badge value="Tarif" textStyle={{color: '#FD7495'}}
+                                <Badge onPress={() => this.props.navigation.navigate('SearchPrice', {data: this.state.salons})} value="Tarif" textStyle={{color: '#FD7495'}}
                                        badgeStyle={{backgroundColor: 'white'}} containerStyle={{
                                     borderColor: '#FD7495',
                                     justifyContent: 'center',
@@ -360,7 +355,7 @@ class HomeScreen extends Component {
                                                     fontSize: 14,
                                                     fontFamily: 'ProximaNova-Regular',
                                                     color: '#9F9E9E'
-                                                }}>70 € par heure</Text>
+                                                }}>{item.price}€ par heure</Text>
                                             </View>
                                         </TouchableOpacity>
                                     </View>

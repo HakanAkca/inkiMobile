@@ -18,6 +18,7 @@ class Notification extends Component {
 
         this.state = {
             list: [{
+                id: 1,
                 name: "N'oubliez pas de laisser un avis \n" +
                     "au salon Magic Circus - Tattoo Shop ",
                 avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -38,9 +39,9 @@ class Notification extends Component {
                     {
                         this.state.list.map((l, i) => (
                             l.validated === false ?
-                            <TouchableOpacity onPress={() => this.openRatingModal()}>
+                            <TouchableOpacity key={l.id} onPress={() => this.openRatingModal()}>
                                 <ListItem
-                                    key={i}
+                                    key={l.id}
                                     leftAvatar={
                                         <Avatar
                                             rounded
@@ -56,7 +57,7 @@ class Notification extends Component {
                                 />
                             </TouchableOpacity>
                                 :
-                                <View></View>
+                            <View key={l.id}></View>
                         ))
                     }
                 </View>

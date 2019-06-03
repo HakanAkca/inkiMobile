@@ -14,6 +14,8 @@ import AgendaScreen from "../Containers/AgendaScreen";
 import SalonScreen from "../Containers/SalonScreen";
 import Booking from "../Containers/Booking/Booking";
 import ChatScreen from "../Containers/ChatScreen";
+import SearchPrice from "../Containers/Search/SearchPrice/SearchPrice";
+import SearchPriceResult from "../Containers/Search/SearchPrice/SearchPriceResult";
 
 
 const SplashStack = createStackNavigator({
@@ -36,7 +38,17 @@ const HomeStack = createStackNavigator({
     Salon: {
         screen: SalonScreen,
     },
-    Booking: {screen: Booking}
+    Booking: {screen: Booking},
+    SearchPrice: {
+        screen: SearchPrice,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Recherche</Text>
+                </View>
+        }
+    },
+    SearchPriceResult: {screen: SearchPriceResult}
 })
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -45,7 +57,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'Salon' || routeName == 'Booking' ) {
+    if ( routeName == 'Salon' || routeName == 'Booking' || routeName == 'SearchPrice') {
         tabBarVisible = false
     }
 
@@ -55,7 +67,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
 }
 
 const AgendaStack = createStackNavigator({
-    Notification: {
+    Agenda: {
         screen: AgendaScreen,
         navigationOptions: {
             headerTitle:
@@ -94,7 +106,6 @@ const AppStack = createBottomTabNavigator({
     Recherche: {
         screen: HomeStack,
         navigationOptions: {
-            tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (
                 <Icon name={'compass-outline'} type={'material-community'} size={30} color={tintColor}/>
             )
@@ -103,7 +114,6 @@ const AppStack = createBottomTabNavigator({
     Agenda: {
         screen: AgendaStack,
         navigationOptions: {
-            tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (
                 <Icon name={'calendar-range-outline'} type={'material-community'} size={30} color={tintColor}/>
             )
@@ -112,7 +122,6 @@ const AppStack = createBottomTabNavigator({
     Notification: {
         screen: NotificationStack,
         navigationOptions: {
-            tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (
                 <Icon name={'bell'} type={'material-community'} size={30} color={tintColor}/>
             )
@@ -121,7 +130,6 @@ const AppStack = createBottomTabNavigator({
     Profile: {
         screen: ProfileStack,
         navigationOptions: {
-            tabBarLabel: 'Home',
             tabBarIcon: ({tintColor}) => (
                 <Icon name={'account-circle-outline'} type={'material-community'} size={30} color={tintColor}/>
             )

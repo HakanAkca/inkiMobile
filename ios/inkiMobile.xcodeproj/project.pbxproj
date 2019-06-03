@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -14,6 +15,7 @@
 		00E356F31AD99517003FC87E /* inkiMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* inkiMobileTests.m */; };
 		0B087901076C40AA88440CD3 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D7301CF7DC84E9FB418E57F /* Foundation.ttf */; };
 		0D457AC248264561A33E5533 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE6ED5CDAD154BDA9DAF4500 /* FontAwesome5_Solid.ttf */; };
+		117FD9C58BF34B0EB8340DAB /* ProximaNova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04F4941792B478395AA5670 /* ProximaNova-Bold.ttf */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -40,32 +42,32 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* inkiMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* inkiMobileTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
+		3464E85236764B34B48EF29D /* libRangeSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B031E82B14B43852D5AFD /* libRangeSlider.a */; };
 		35A6A9EC2DB9483CB536335D /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 422B25E067C64D67AB035623 /* libRNFirebase.a */; };
+		39654BCD667D4133802B7F29 /* ProximaNova-Extrabld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 195A19E0A873483DA485B272 /* ProximaNova-Extrabld.ttf */; };
+		3B017B0FA5FA471BA57A7328 /* ProximaNova-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A1FC82446DC4F2E815F7C5D /* ProximaNova-Regular.ttf */; };
 		40EF370C5ECE49F389EB8666 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF9A4726FE1B4B7F94FF6E16 /* FontAwesome.ttf */; };
 		4C1417C109B05CEC0820541B /* libPods-inkiMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C8E227A6E1027D816EA215 /* libPods-inkiMobileTests.a */; };
 		6E00CE8F4927440DB47C6DAC /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 340CA435EC2B49A39E01121F /* FontAwesome5_Brands.ttf */; };
+		7CD9BC100D2347C19F8E2F03 /* ProximaNova-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BBAC9649E447381E39586 /* ProximaNova-Black.ttf */; };
+		7F81DE754D5640B4901731FD /* ProximaNova-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567CE9F5CA4148ACAF0D8193 /* ProximaNova-Semibold.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		85303DA468ED48BD82EA089A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9F097512CA241FC92AF6664 /* EvilIcons.ttf */; };
-		875D1CB32225441B0094E8C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 875D1CB22225441B0094E8C8 /* GoogleService-Info.plist */; };
+		876B92FF22A5618A00B4FBDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 876B92D722A5618A00B4FBDD /* GoogleService-Info.plist */; };
+		945DF2253DA048119993821C /* ProximaNovaT-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE82B146345F4185B885F5E7 /* ProximaNovaT-Thin.ttf */; };
 		9C9BC3DC6FB84CD5A19B75AC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0063B7ED0000455487F2B278 /* SimpleLineIcons.ttf */; };
 		9FA7CE072C6F4B188735E020 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FC00A5887F547AFAECCA307 /* MaterialIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BDEFB7BD1F877B0B23C5051B /* libPods-inkiMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE08D2AEF8528DBB4E9C705 /* libPods-inkiMobile.a */; };
 		BFD3302567ED460E936165CB /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DCB84A881FA4FBA9BF2A3B3 /* AntDesign.ttf */; };
 		C859A416C72246B98C47D4B3 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 453B2EB6EE4649A09E900277 /* Entypo.ttf */; };
+		DC85BCE7EFC24E4191E71457 /* ProximaNova-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2EAF7537D8A458DBFF57E94 /* ProximaNova-Light.ttf */; };
 		E91415D172E94DA2999B27CF /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADEEF76E26C3498E91BE0A4F /* Octicons.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F4DA263609CE40AAA2471DC7 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5493D9268D144360AD33D968 /* MaterialCommunityIcons.ttf */; };
 		F9420D7D57E84B6ABE488A7E /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E2F5B56A8E94F25BFCA9AF4 /* Ionicons.ttf */; };
 		FD388831F01CFEFAB69B74C5 /* libPods-inkiMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F6DB4942162EA32ACA2043 /* libPods-inkiMobile-tvOSTests.a */; };
-		7CD9BC100D2347C19F8E2F03 /* ProximaNova-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BBAC9649E447381E39586 /* ProximaNova-Black.ttf */; };
-		117FD9C58BF34B0EB8340DAB /* ProximaNova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C04F4941792B478395AA5670 /* ProximaNova-Bold.ttf */; };
-		39654BCD667D4133802B7F29 /* ProximaNova-Extrabld.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 195A19E0A873483DA485B272 /* ProximaNova-Extrabld.ttf */; };
-		DC85BCE7EFC24E4191E71457 /* ProximaNova-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2EAF7537D8A458DBFF57E94 /* ProximaNova-Light.ttf */; };
-		3B017B0FA5FA471BA57A7328 /* ProximaNova-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A1FC82446DC4F2E815F7C5D /* ProximaNova-Regular.ttf */; };
-		7F81DE754D5640B4901731FD /* ProximaNova-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 567CE9F5CA4148ACAF0D8193 /* ProximaNova-Semibold.ttf */; };
-		945DF2253DA048119993821C /* ProximaNovaT-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE82B146345F4185B885F5E7 /* ProximaNovaT-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +309,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		87154B2C22A55FA300919781 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FDC820CBF9C471FA00D640D /* RangeSlider.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 043F1FDA20BDDACF00904784;
+			remoteInfo = RangeSlider;
+		};
 		875D1CA5222543610094E8C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -374,6 +383,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = inkiMobile/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		186C5512A8FCAC3EE0B3724E /* Pods-inkiMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inkiMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-inkiMobileTests/Pods-inkiMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		195A19E0A873483DA485B272 /* ProximaNova-Extrabld.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Extrabld.ttf"; path = "../assets/fonts/ProximaNova-Extrabld.ttf"; sourceTree = "<group>"; };
+		1F2BBAC9649E447381E39586 /* ProximaNova-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Black.ttf"; path = "../assets/fonts/ProximaNova-Black.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* inkiMobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "inkiMobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* inkiMobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "inkiMobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -385,19 +396,26 @@
 		4E2F5B56A8E94F25BFCA9AF4 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		50DCF60ED1FE4493964A4563 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		5493D9268D144360AD33D968 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		567CE9F5CA4148ACAF0D8193 /* ProximaNova-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Semibold.ttf"; path = "../assets/fonts/ProximaNova-Semibold.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		5FDC820CBF9C471FA00D640D /* RangeSlider.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RangeSlider.xcodeproj; path = "../node_modules/react-native-range-slider/ios/RangeSlider.xcodeproj"; sourceTree = "<group>"; };
 		6531893C71F04D5ABF99EDEB /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		6C4BE1846D874D9596B28710 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		6DCB84A881FA4FBA9BF2A3B3 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7A1FC82446DC4F2E815F7C5D /* ProximaNova-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Regular.ttf"; path = "../assets/fonts/ProximaNova-Regular.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		875D1CB22225441B0094E8C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		876B92D722A5618A00B4FBDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D7301CF7DC84E9FB418E57F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9FC00A5887F547AFAECCA307 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		A72B031E82B14B43852D5AFD /* libRangeSlider.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRangeSlider.a; sourceTree = "<group>"; };
 		A8C8E227A6E1027D816EA215 /* libPods-inkiMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-inkiMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		ADEEF76E26C3498E91BE0A4F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		BE82B146345F4185B885F5E7 /* ProximaNovaT-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNovaT-Thin.ttf"; path = "../assets/fonts/ProximaNovaT-Thin.ttf"; sourceTree = "<group>"; };
+		C04F4941792B478395AA5670 /* ProximaNova-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Bold.ttf"; path = "../assets/fonts/ProximaNova-Bold.ttf"; sourceTree = "<group>"; };
 		C1B920EBF62A6BE55A81B025 /* Pods-inkiMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inkiMobileTests.release.xcconfig"; path = "Target Support Files/Pods-inkiMobileTests/Pods-inkiMobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		C2EAF7537D8A458DBFF57E94 /* ProximaNova-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Light.ttf"; path = "../assets/fonts/ProximaNova-Light.ttf"; sourceTree = "<group>"; };
 		C7F6DB4942162EA32ACA2043 /* libPods-inkiMobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-inkiMobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE08D2AEF8528DBB4E9C705 /* libPods-inkiMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-inkiMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D82FD9C154648060043DB1 /* Pods-inkiMobile-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inkiMobile-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-inkiMobile-tvOSTests/Pods-inkiMobile-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,13 +425,6 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EF9A4726FE1B4B7F94FF6E16 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		1F2BBAC9649E447381E39586 /* ProximaNova-Black.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Black.ttf"; path = "../assets/fonts/ProximaNova-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C04F4941792B478395AA5670 /* ProximaNova-Bold.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Bold.ttf"; path = "../assets/fonts/ProximaNova-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		195A19E0A873483DA485B272 /* ProximaNova-Extrabld.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Extrabld.ttf"; path = "../assets/fonts/ProximaNova-Extrabld.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C2EAF7537D8A458DBFF57E94 /* ProximaNova-Light.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Light.ttf"; path = "../assets/fonts/ProximaNova-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7A1FC82446DC4F2E815F7C5D /* ProximaNova-Regular.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Regular.ttf"; path = "../assets/fonts/ProximaNova-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		567CE9F5CA4148ACAF0D8193 /* ProximaNova-Semibold.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Semibold.ttf"; path = "../assets/fonts/ProximaNova-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BE82B146345F4185B885F5E7 /* ProximaNovaT-Thin.ttf */ = {isa = PBXFileReference; name = "ProximaNovaT-Thin.ttf"; path = "../assets/fonts/ProximaNovaT-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,6 +456,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				35A6A9EC2DB9483CB536335D /* libRNFirebase.a in Frameworks */,
 				BDEFB7BD1F877B0B23C5051B /* libPods-inkiMobile.a in Frameworks */,
+				3464E85236764B34B48EF29D /* libRangeSlider.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +599,7 @@
 		13B07FAE1A68108700A75B9A /* inkiMobile */ = {
 			isa = PBXGroup;
 			children = (
-				875D1CB22225441B0094E8C8 /* GoogleService-Info.plist */,
+				876B92D722A5618A00B4FBDD /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -682,6 +694,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				6531893C71F04D5ABF99EDEB /* RNFirebase.xcodeproj */,
+				5FDC820CBF9C471FA00D640D /* RangeSlider.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -723,10 +736,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		87154B2922A55FA300919781 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87154B2D22A55FA300919781 /* libRangeSlider.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		875D1C7F222543600094E8C8 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				422B25E067C64D67AB035623 /* libRNFirebase.a */,
+				A72B031E82B14B43852D5AFD /* libRangeSlider.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -863,6 +885,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 87154B2922A55FA300919781 /* Products */;
+					ProjectRef = 5FDC820CBF9C471FA00D640D /* RangeSlider.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1151,6 +1177,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		87154B2D22A55FA300919781 /* libRangeSlider.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRangeSlider.a;
+			remoteRef = 87154B2C22A55FA300919781 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		875D1CA6222543610094E8C8 /* libjsi.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1209,7 +1242,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				875D1CB32225441B0094E8C8 /* GoogleService-Info.plist in Resources */,
+				876B92FF22A5618A00B4FBDD /* GoogleService-Info.plist in Resources */,
 				BFD3302567ED460E936165CB /* AntDesign.ttf in Resources */,
 				C859A416C72246B98C47D4B3 /* Entypo.ttf in Resources */,
 				85303DA468ED48BD82EA089A /* EvilIcons.ttf in Resources */,
@@ -1474,12 +1507,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = inkiMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1501,12 +1536,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = inkiMobileTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1529,6 +1566,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = inkiMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1552,6 +1590,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = inkiMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1581,11 +1620,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = "inkiMobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1615,11 +1656,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = "inkiMobile-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1649,11 +1692,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = "inkiMobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1683,11 +1728,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-range-slider/ios/**",
 				);
 				INFOPLIST_FILE = "inkiMobile-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (

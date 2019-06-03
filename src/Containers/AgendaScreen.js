@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Text,
     View,
     StyleSheet,
     AsyncStorage,
     Dimensions,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import firebase from 'react-native-firebase'
+import CardView from 'react-native-cardview'
+import {Badge} from "react-native-elements";
 
-let { width } = Dimensions.get('window');
+let {width} = Dimensions.get('window');
 
 LocaleConfig.locales['fr'] = {
     monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
@@ -20,6 +23,7 @@ LocaleConfig.locales['fr'] = {
 };
 LocaleConfig.defaultLocale = 'fr';
 
+let colors = ["#FDB8C7", "#85DAF7"];
 
 export default class AgendaScreen extends Component {
 
@@ -27,37 +31,6 @@ export default class AgendaScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: [
-                {
-                    start: '2019-05-06 00:00:00',
-                    end: '2019-01-01 02:00:00',
-                    title: 'New Year Party',
-                    summary: 'xyz Location',
-                }, {
-                    start: '2019-01-01 01:00:00',
-                    end: '2019-01-01 02:00:00',
-                    title: 'New Year Wishes',
-                    summary: 'Call to every one',
-                },
-                {
-                    start: '2019-01-02 00:30:00',
-                    end: '2019-01-02 01:30:00',
-                    title: 'Parag Birthday Party',
-                    summary: 'Call him',
-                },
-                {
-                    start: '2019-05-07 01:30:00',
-                    end: '2019-05-07 02:20',
-                    title: 'My Birthday Party',
-                    summary: 'Lets Enjoy',
-                },
-                {
-                    start: '2019-05-07 10:10:00',
-                    end: '2019-05-07 11:40:00',
-                    title: 'Engg Expo 2019',
-                    summary: 'Expoo Vanue not confirm',
-                },
-            ],
             bookings: [],
             activeDay: new Date()
         };
@@ -67,7 +40,7 @@ export default class AgendaScreen extends Component {
         firebase.database().ref('/bookings').on('value', snapshot => {
             let data = snapshot.val();
             let bookings = Object.values(data);
-            this.setState({ bookings });
+            this.setState({bookings});
         });
     }
 
@@ -78,10 +51,16 @@ export default class AgendaScreen extends Component {
             d = activeDay.getDate();
         m = m < 10 ? `0${m}` : m;
         d = d < 10 ? `0${d}` : d;
-        //console.log(`${year}-${m}-${date}`);
+
+        let today = new Date()
+        let yr = today.getFullYear(),
+            ms = today.getMonth() + 1,
+            dy = today.getDate();
+        ms = ms < 10 ? `0${ms}` : ms;
+        dy = dy < 10 ? `0${dy}` : dy;
 
         return (
-            <View style={{flex: 1, marginTop: 20}}>
+            <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
                 <Calendar
                     theme={{
                         calendarBackground: '#FFFFFF',
@@ -125,10 +104,19 @@ export default class AgendaScreen extends Component {
                     onPressArrowLeft={substractMonth => substractMonth()}
                     onPressArrowRight={addMonth => addMonth()}
                 />
-                <View>
+
+                <ScrollView style={{backgroundColor: '#F8FAFA'}}>
+                <View style={{flex: 1, padding: 20, backgroundColor: '#F8FAFA'}}>
+                    <View>
+                        <Text style={{
+                            color: '#616161',
+                            fontSize: 16
+                        }}>{`${y}-${m}-${d}` === `${yr}-${ms}-${dy}` ? 'Aujourd\'hui' : `Le ${y}-${m}-${d}`}</Text>
+                    </View>
                     {
                         this.state.bookings.map((item, index) => {
                             let active = new Date(item.start)
+                            let today = new Date()
 
                             let year = active.getFullYear(),
                                 month = active.getMonth() + 1,
@@ -136,18 +124,48 @@ export default class AgendaScreen extends Component {
                             month = month < 10 ? `0${month}` : month;
                             date = date < 10 ? `0${date}` : date;
 
+                            let hoursStart = new Date(item.start).getHours()
+                            hoursStart = hoursStart < 10 ? `0${hoursStart}` : hoursStart;
+                            let minutesStart = new Date(item.start).getMinutes()
+                            let secondStart = new Date(item.start).getSeconds()
+
+                            let hoursEnd = new Date(item.end).getHours()
+                            hoursEnd = hoursEnd < 10 ? `0${hoursEnd}` : hoursEnd;
+                            let minutesEnd = new Date(item.end).getMinutes()
+                            let secondEnd = new Date(item.end).getSeconds()
+
                             return (
-                                <View key={index}>
+                                <CardView key={index}
+                                          cardElevation={1}
+                                          cardMaxElevation={1}
+                                          cornerRadius={0}
+                                >
                                     {
                                         `${y}-${m}-${d}` === `${year}-${month}-${date}` &&
-                                            <Text>{item.title}</Text>
+                                        <View
+                                            style={{marginTop: 10, backgroundColor: '#FFFFFF', height: 61, width: 331,
+                                                justifyContent: 'center'}}>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                justifyContent: 'space-around'
+                                            }}>
+                                                <View style={{'backgroundColor': colors[index % colors.length], height: 14, width: 14, borderRadius: 50}} />
+                                                <Text style={{fontSize: 17, width: 140}}>{item.title}</Text>
+                                                <View style={{'backgroundColor': colors[index % colors.length], borderRadius: 50 }}>
+                                                    <Text style={{fontSize: 11, padding: 10, color: '#FFFFFF'}}>{hoursStart + ':' + minutesStart + secondStart} - {hoursEnd + ':' + minutesEnd + secondEnd}</Text>
+                                                </View>
+                                            </View>
+                                        </View>
 
                                     }
-                                </View>
+                                </CardView>
                             )
                         })
                     }
                 </View>
+
+                </ScrollView>
             </View>
         );
     }
@@ -164,7 +182,7 @@ const styles = StyleSheet.create({
     },
     emptyDate: {
         height: 15,
-        flex:1,
+        flex: 1,
         paddingTop: 30
     }
 });

@@ -19,7 +19,7 @@ class Messages extends Component {
                 <View>
                     {
                         list.map((l, i) => (
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Chat')}>
+                            <TouchableOpacity key={i} onPress={() => this.props.navigation.navigate('Chat')}>
                                 <ListItem
                                     key={i}
                                     leftAvatar={
