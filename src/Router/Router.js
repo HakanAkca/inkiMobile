@@ -83,12 +83,12 @@ const NotificationStack = createStackNavigator({
 })
 
 NotificationStack.navigationOptions = ({ navigation }) => {
-    let header = false;
+    let header = true;
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
     if ( routeName == 'Chat' ) {
-        header = true
+        header = false
     }
 
     return {
