@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {View, Text, ScrollView, AsyncStorage} from 'react-native'
 import Modal from 'react-native-modal';
 import {Calendar} from "react-native-calendars";
-import {CheckBox, ListItem, Button} from "react-native-elements";
+import {CheckBox, ListItem, Button, Icon} from "react-native-elements";
 import firebase from 'react-native-firebase'
 
 
@@ -76,6 +76,11 @@ class Booking extends Component {
         }
     }
 
+    showModal() {
+        this.setState({confirmationModal: null})
+        this.props.navigation.navigate('Agenda')
+    }
+
     render() {
         const data = this.props.navigation.state.params.data
 
@@ -129,10 +134,13 @@ class Booking extends Component {
                 <Button loading={this.state.loading} onPress={() => this.validateBooking()} containerStyle={{marginTop: 60, width: 375, height: 667}} buttonStyle={{borderRadius: 0, backgroundColor: '#85DAF7'}} title={'Valider'} />
                 <Modal isVisible={this.state.confirmationModal}>
                     <View style={styles.content}>
-                        <Text style={styles.contentTitle}>Hi 👋!</Text>
-                        <Button
-                            onPress={() => this.setState({ confirmationModal: null })}
-                            title="Close"
+                        <Icon name={"check-circle-outline"} type={"material-community"} size={80} color={'#FD7495'}/>
+                        <Text style={styles.contentTitle}>Votre réservation à bien été enregistré !</Text>
+                        <Button title="Voir l'agenda"
+                                containerStyle={{width: 129.06, marginTop: 20}}
+                                buttonStyle={{borderRadius: 20, backgroundColor: 'white', borderWidth: 2, borderColor: '#F6799A'}}
+                                titleStyle={{ color: '#F6799A', fontSize: 14}}
+                                onPress={() => this.showModal()}
                         />
                     </View>
                 </Modal>
@@ -171,10 +179,13 @@ const styles = ({
         alignItems: 'center',
         borderRadius: 4,
         borderColor: 'rgba(0, 0, 0, 0.1)',
+        height: 260,
     },
     contentTitle: {
         fontSize: 20,
-        marginBottom: 12,
+        marginTop: 10,
+        textAlign: 'center',
+        color: '#85DAF7'
     },
 })
 
