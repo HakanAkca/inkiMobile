@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {View, Text, ScrollView, AsyncStorage} from 'react-native'
 import Modal from 'react-native-modal';
 import {Calendar} from "react-native-calendars";
@@ -8,9 +8,6 @@ import firebase from 'react-native-firebase'
 
 class Booking extends Component {
 
-    static navigationOptions = ({ navigation }) => ({
-        header: null
-    })
 
     constructor(props) {
         super(props);
@@ -53,7 +50,7 @@ class Booking extends Component {
             firebase.database().ref('/bookings').push({
                 title: this.props.navigation.state.params.data.name,
                 start: this.state.date + ' ' + salon.slot_1,
-                end: this.state.date + ' ' +  salon.slot_2
+                end: this.state.date + ' ' + salon.slot_2
             }).then(() => this.setState({loading: false, confirmationModal: true}))
 
             //await AsyncStorage.setItem('agenda', JSON.stringify({title: this.props.navigation.state.params.data.name, start: this.state.date + ' ' + salon.slot_1, end: this.state.date + ' ' +  salon.slot_2 }))
@@ -61,7 +58,7 @@ class Booking extends Component {
             firebase.database().ref('/bookings').push({
                 title: this.props.navigation.state.params.data.name,
                 start: this.state.date + ' ' + salon.slot_3,
-                end: this.state.date + ' ' +  salon.slot_4
+                end: this.state.date + ' ' + salon.slot_4
             }).then(() => this.setState({loading: false, confirmationModal: true}))
 
             //await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_2, date: this.state.date}))
@@ -69,7 +66,7 @@ class Booking extends Component {
             firebase.database().ref('/bookings').push({
                 title: this.props.navigation.state.params.data.name,
                 start: this.state.date + ' ' + salon.slot_5,
-                end: this.state.date + ' ' +  salon.slot_6
+                end: this.state.date + ' ' + salon.slot_6
             }).then(() => this.setState({loading: false, confirmationModal: true}))
 
             //await AsyncStorage.setItem('agenda', JSON.stringify({salon: salon.slot_3, date: this.state.date}))
@@ -85,66 +82,92 @@ class Booking extends Component {
         const data = this.props.navigation.state.params.data
 
         return (
-            <View style={styles.container}>
-                <View style={{alignItems: 'center', backgroundColor: '#FFFFFF'}}>
-                    <Calendar
-                        onDayPress={this.onDayPress}
-                        style={styles.calendar}
-                        hideExtraDays
-                        markedDates={{[this.state.date]: {selected: true, disableTouchEvent: true, selectedColor: '#FDB8C7'}}}
-                    />
-                </View>
-                <View style={{backgroundColor: '#F8FAFA', alignItems: 'flex-start'}}>
-                    <Text style={{marginLeft: '7%', marginTop: '4%', fontSize: 16, fontFamily: 'ProximaNova-Semibold', color: '#616161'}}>Horaire</Text>
-                    <CheckBox
-                        center
-                        checkedColor='#FDB8C7'
-                        uncheckedColor='#FDB8C7'
-                        checkedIcon='dot-circle-o'
-                        uncheckedIcon='circle-o'
-                        checked={this.state.checked_1}
-                        onPress={() => this.checkSlot1()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_1} - {data.slot_2}</Text>}
-                        containerStyle={{borderWidth: 0}}
-                    />
-                    <CheckBox
-                        center
-                        checkedColor='#FDB8C7'
-                        uncheckedColor='#FDB8C7'
-                        checkedIcon='dot-circle-o'
-                        uncheckedIcon='circle-o'
-                        checked={this.state.checked_2}
-                        onPress={() => this.checkSlot2()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_3} - {data.slot_4}</Text>}
-                        containerStyle={{borderWidth: 0}}
-                    />
-                    <CheckBox
-                        center
-                        checkedColor='#FDB8C7'
-                        uncheckedColor='#FDB8C7'
-                        checkedIcon='dot-circle-o'
-                        uncheckedIcon='circle-o'
-                        checked={this.state.checked_3}
-                        onPress={() => this.checkSlot3()}
-                        title={<Text style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_5} - {data.slot_6}</Text>}
-                        containerStyle={{borderWidth: 0}}
-                    />
 
-                </View>
-                <Button loading={this.state.loading} onPress={() => this.validateBooking()} containerStyle={{marginTop: 60, width: 375, height: 667}} buttonStyle={{borderRadius: 0, backgroundColor: '#85DAF7'}} title={'Valider'} />
-                <Modal isVisible={this.state.confirmationModal}>
-                    <View style={styles.content}>
-                        <Icon name={"check-circle-outline"} type={"material-community"} size={80} color={'#FD7495'}/>
-                        <Text style={styles.contentTitle}>Votre réservation à bien été enregistré !</Text>
-                        <Button title="Voir l'agenda"
-                                containerStyle={{width: 129.06, marginTop: 20}}
-                                buttonStyle={{borderRadius: 20, backgroundColor: 'white', borderWidth: 2, borderColor: '#F6799A'}}
-                                titleStyle={{ color: '#F6799A', fontSize: 14}}
-                                onPress={() => this.showModal()}
+            <ScrollView style={{flex: 1}}>
+                <View style={styles.container}>
+                    <View style={{alignItems: 'center', backgroundColor: '#FFFFFF'}}>
+                        <Calendar
+                            onDayPress={this.onDayPress}
+                            style={styles.calendar}
+                            hideExtraDays
+                            markedDates={{
+                                [this.state.date]: {
+                                    selected: true,
+                                    disableTouchEvent: true,
+                                    selectedColor: '#FDB8C7'
+                                }
+                            }}
                         />
                     </View>
-                </Modal>
-            </View>
+                    <View style={{backgroundColor: '#F8FAFA', alignItems: 'flex-start'}}>
+                        <Text style={{
+                            marginLeft: '7%',
+                            marginTop: '4%',
+                            fontSize: 16,
+                            fontFamily: 'ProximaNova-Semibold',
+                            color: '#616161'
+                        }}>Horaire</Text>
+                        <CheckBox
+                            center
+                            checkedColor='#FDB8C7'
+                            uncheckedColor='#FDB8C7'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked_1}
+                            onPress={() => this.checkSlot1()}
+                            title={<Text
+                                style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_1} - {data.slot_2}</Text>}
+                            containerStyle={{borderWidth: 0}}
+                        />
+                        <CheckBox
+                            center
+                            checkedColor='#FDB8C7'
+                            uncheckedColor='#FDB8C7'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked_2}
+                            onPress={() => this.checkSlot2()}
+                            title={<Text
+                                style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_3} - {data.slot_4}</Text>}
+                            containerStyle={{borderWidth: 0}}
+                        />
+                        <CheckBox
+                            center
+                            checkedColor='#FDB8C7'
+                            uncheckedColor='#FDB8C7'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked_3}
+                            onPress={() => this.checkSlot3()}
+                            title={<Text
+                                style={{marginLeft: 10, color: '#FDB8C7'}}>{data.slot_5} - {data.slot_6}</Text>}
+                            containerStyle={{borderWidth: 0}}
+                        />
+
+                    </View>
+                    <Button loading={this.state.loading} onPress={() => this.validateBooking()}
+                            containerStyle={{marginTop: 60, width: 375}}
+                            buttonStyle={{borderRadius: 0, backgroundColor: '#85DAF7'}} title={'Valider'}/>
+                    <Modal isVisible={this.state.confirmationModal}>
+                        <View style={styles.content}>
+                            <Icon name={"check-circle-outline"} type={"material-community"} size={80}
+                                  color={'#FD7495'}/>
+                            <Text style={styles.contentTitle}>Votre réservation à bien été enregistré !</Text>
+                            <Button title="Voir l'agenda"
+                                    containerStyle={{width: 129.06}}
+                                    buttonStyle={{
+                                        borderRadius: 20,
+                                        backgroundColor: 'white',
+                                        borderWidth: 2,
+                                        borderColor: '#F6799A'
+                                    }}
+                                    titleStyle={{color: '#F6799A', fontSize: 14}}
+                                    onPress={() => this.showModal()}
+                            />
+                        </View>
+                    </Modal>
+                </View>
+            </ScrollView>
 
         );
     }

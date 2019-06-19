@@ -192,7 +192,7 @@ class HomeScreen extends Component {
                         <View style={{width: '90%', marginTop: 30}}>
                             <SearchBar
                                 onClear={() => this.setState({data: []})}
-                                placeholder="Dites nous ce que vous cherchez..."
+                                placeholder="Que recherchez-vous"
                                 lightTheme
                                 round
                                 containerStyle={{
@@ -240,7 +240,9 @@ class HomeScreen extends Component {
                                 ListHeaderComponent={this.renderHeader}
                             />
                             <View style={{flexDirection: 'row', marginTop: 15}}>
-                                <Badge value="Date" textStyle={{color: '#FD7495'}}
+                                <Badge
+                                    onPress={() => this.props.navigation.navigate('SearchDate', {data: this.state.salons})}
+                                    value="Date" textStyle={{color: '#FD7495'}}
                                        badgeStyle={{backgroundColor: 'white'}} containerStyle={{
                                     borderColor: '#FD7495',
                                     justifyContent: 'center',
@@ -251,7 +253,7 @@ class HomeScreen extends Component {
                                     borderRadius: 20
                                 }}/>
 
-                                <Badge onPress={() => this.props.navigation.navigate('SearchPrice', {data: this.state.salons})} value="Tarif" textStyle={{color: '#FD7495'}}
+                                <Badge onPress={() => this.props.navigation.navigate('SearchPrice', {data: this.state.salons})} value="Budget" textStyle={{color: '#FD7495'}}
                                        badgeStyle={{backgroundColor: 'white'}} containerStyle={{
                                     borderColor: '#FD7495',
                                     justifyContent: 'center',
@@ -263,7 +265,9 @@ class HomeScreen extends Component {
                                     marginLeft: 10
                                 }}/>
 
-                                <Badge value="Style" textStyle={{color: '#FD7495'}}
+                                <Badge
+                                    onPress={() => this.props.navigation.navigate('SearchStyle', {data: this.state.salons})}
+                                    value="Style" textStyle={{color: '#FD7495'}}
                                        badgeStyle={{backgroundColor: 'white'}} containerStyle={{
                                     borderColor: '#FD7495',
                                     justifyContent: 'center',

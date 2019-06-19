@@ -19,7 +19,8 @@ class SignUp extends Component {
             confirmPassword: '',
             passwordError: null,
             errorMessage: null,
-            keyboard: null
+            keyboard: null,
+            loading: false
         };
 
         this._keyboardDidHide = this._keyboardDidHide.bind(this)
@@ -46,7 +47,7 @@ class SignUp extends Component {
     }
 
     handleSignUp = () => {
-
+        this.setState({loading: true})
 
         if (this.state.password !== this.state.confirmPassword) {
             this.setState({passwordError: 'Les mots de passe ne sont pas identique'})
@@ -60,7 +61,8 @@ class SignUp extends Component {
                         lastName: this.state.lastname,
                         email: this.state.email
                     }))
-                .catch(error => this.setState({ errorMessage: error.message }))
+                .then({loading: false})
+                .catch(error => this.setState({ registerError: "Compte déjà existant", loading: false}))
         }
     }
     render() {

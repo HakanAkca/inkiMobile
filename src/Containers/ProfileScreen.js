@@ -64,10 +64,11 @@ class ProfileScreen extends Component {
                             />
                             <View style={{marginLeft: 23}}>
                                 <Text style={{
+                                    color: '#FFFFFF',
                                     fontSize: 20,
                                     fontFamily: 'ProximaNova-Semibold'
                                 }}>{firstName} {lastName}</Text>
-                                <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Regular'}}>Tatoueur Nomade</Text>
+                                <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Regular',  color: '#FFFFFF'}}>Tatoueur Nomade</Text>
                             </View>
                         </View>
                     </LinearGradient>
@@ -91,7 +92,7 @@ class ProfileScreen extends Component {
                                         this.state.editLocalisation == true &&
                                         <TouchableOpacity style={{marginLeft: '60%'}}
                                                           onPress={() => this.updateLocalisation()}>
-                                            <Icon size={20} name={'check'} type={'material-community'}/>
+                                            <Icon size={20} name={'check'} color={"#616161"} type={'material-community'}/>
                                         </TouchableOpacity>
                                     }
                                     {
@@ -99,7 +100,7 @@ class ProfileScreen extends Component {
 
                                         <TouchableOpacity style={{marginLeft: '60%'}}
                                                           onPress={() => this.setState({editLocalisation: true})}>
-                                            <Icon size={20} name={'pen'} type={'material-community'}/>
+                                            <Icon size={20} name={'pencil-outline'} color={"#616161"} type={'material-community'}/>
                                         </TouchableOpacity>
 
                                     }
@@ -107,12 +108,13 @@ class ProfileScreen extends Component {
                                 <View style={{flexDirection: 'column', alignItems: 'flex-start'}}>
                                     <Text style={{fontSize: 16, color: '#FD7495'}}>Avis :</Text>
                                     <Rating
-                                        type='custom'
+                                        type={"custom"}
+                                        readonly
                                         ratingColor='#FD7495'
                                         ratingBackgroundColor='#E6E6E6'
                                         ratingCount={5}
                                         imageSize={18}
-                                        startingValue={rating}
+                                        startingValue={0}
                                     />
                                     <TouchableOpacity>
                                         <Text style={{
@@ -135,7 +137,7 @@ class ProfileScreen extends Component {
                                                 this.state.editDescription == true &&
                                                 <TouchableOpacity style={{marginLeft: '71%'}}
                                                                   onPress={() => this.setState({editDescription: false})}>
-                                                    <Icon size={20} name={'check'} type={'material-community'}/>
+                                                    <Icon size={20} name={'check'} color={"#616161"} type={'material-community'}/>
                                                 </TouchableOpacity>
                                             }
                                             {
@@ -143,7 +145,7 @@ class ProfileScreen extends Component {
                                                 this.state.editDescription == false &&
                                                 <TouchableOpacity style={{marginLeft: '71%'}}
                                                                   onPress={() => this.setState({editDescription: true})}>
-                                                    <Icon size={20} name={'pen'} type={'material-community'}/>
+                                                    <Icon size={20} name={'pencil-outline'} color={"#616161"} type={'material-community'}/>
                                                 </TouchableOpacity>
                                             }
                                         </View>
@@ -200,7 +202,17 @@ class ProfileScreen extends Component {
                 </ScrollView>
                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
 
-                    <Button buttonStyle={{height: 44, width: 239, borderRadius: 30, backgroundColor: 'white'}}
+                    <Button
+                            icon={
+                                <Icon
+                                    containerStyle={{marginTop: 3, marginRight: 10}}
+                                    name="power"
+                                    color={"#85DAF7"}
+                                    type={"material-community"}
+                                />
+                            }
+                            iconLeft
+                            buttonStyle={{height: 44, width: 239, borderRadius: 30, backgroundColor: 'white'}}
                             titleStyle={{color: '#85DAF7'}} title="Déconnexion"
                             onPress={() => this.signOutUser()}/>
                 </View>

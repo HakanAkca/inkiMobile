@@ -15,7 +15,13 @@ class Login extends Component {
             password: '',
             errorMessage: null,
             keyboard: null,
-            tab: true
+            tab: true,
+            loading: false,
+            firstname: '',
+            lastname: '',
+            confirmPassword: '',
+            passwordError: null,
+            registerError: null,
         }
 
         this._keyboardDidHide = this._keyboardDidHide.bind(this)
@@ -24,11 +30,15 @@ class Login extends Component {
 
     handleLogin = () => {
         const { email, password } = this.state
+
+        this.setState({loading: true})
+
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => this.props.navigation.navigate('AppStack'))
-            .catch(error => this.setState({ errorMessage: error.message }))
+            .then({loading: false})
+            .catch(error => this.setState({ errorMessage: "Identifiant incorrect", loading: false} ))
     }
 
     componentWillMount () {
@@ -53,6 +63,26 @@ class Login extends Component {
         this.setState({tab: !this.state.tab})
     }
 
+    handleSignUp = () => {
+        this.setState({loading: true})
+
+        if (this.state.password !== this.state.confirmPassword) {
+            this.setState({passwordError: 'Les mots de passe ne sont pas identique'})
+        } else {
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then((res) =>
+                    firebase.database().ref('users/' + res.user.uid).set({
+                        firstName: this.state.firstname,
+                        lastName: this.state.lastname,
+                        email: this.state.email
+                    }))
+                .then({loading: false})
+                .catch(error => this.setState({ registerError: "Compte déjà existant", loading: false}))
+        }
+    }
+
     render() {
         return (
 
@@ -71,7 +101,7 @@ class Login extends Component {
                                     <Text style={{fontSize: 20, marginTop: 20, color: '#FFFFFF'}}>Inscription</Text>
                                 </TouchableOpacity>
                             </View>
-                            <CardView style={{width: 332, height: 262,  backgroundColor: 'white', marginTop: 20}} cardElevation={0} cardMaxElevation={0} cornerRadius={10}>
+                            <CardView style={{width: 332, height: 282,  backgroundColor: 'white', marginTop: 20}} cardElevation={0} cardMaxElevation={0} cornerRadius={10}>
                                 <View style={{width: '100%', padding: 20, alignItems: 'center', marginTop: 20}}>
                                     {this.state.errorMessage &&
                                     <Text style={{ color: 'red' }}>
@@ -79,6 +109,7 @@ class Login extends Component {
                                     </Text>
                                     }
                                     <Input
+                                        containerStyle={{marginTop: 20}}
                                         autoCapitalize="none"
                                         placeholder="Email"
                                         onChangeText={email => this.setState({ email })}
@@ -93,6 +124,7 @@ class Login extends Component {
                                         value={this.state.password}
                                     />
                                     <Button title="Connexion"
+                                            loading={this.state.loading}
                                             containerStyle={{width: '60%', marginTop: 50}}
                                             buttonStyle={{borderRadius: 20, backgroundColor: 'white', borderWidth: 2, borderColor: '#F6799A'}}
                                             titleStyle={{ color: '#F6799A'}}

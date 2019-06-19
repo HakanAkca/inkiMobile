@@ -115,11 +115,14 @@ class Notification extends Component {
                                             borderBottomWidth: 2,
                                             borderBottomColor: "#F8F8F8"}}>
                                             <TouchableOpacity onPress={() => this.setState({showModal: false})}>
-                                                <Text style={{fontSize: 18, color: "#CECECE"}}>X</Text>
+                                                <Text style={{fontSize: 20, color: "#CECECE"}}>X</Text>
                                             </TouchableOpacity>
-                                            <Text style={{color: '#88D7F4', fontSize: 22}}>Laisser une évaluation</Text>
-                                            <TouchableOpacity>
-                                                <Icon color={"#FB3E66"} name={"check"} type={"material-community"}/>
+                                            <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                                <Text style={{color: '#88D7F4', fontSize: 22}}>Satisfais du salons ?</Text>
+                                                <Text style={{color: '#88D7F4', fontSize: 22}}>Laissez un avis !</Text>
+                                            </View>
+                                            <TouchableOpacity onPress={() => this.setState({showModal: false})}>
+                                                <Icon color={"#FB3E66"} size={20} name={"check"} type={"material-community"}/>
                                             </TouchableOpacity>
                                         </View>
                                         <View style={{flexDirection: 'row', alignItems: 'center', padding: 30,

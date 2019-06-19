@@ -1,6 +1,11 @@
 import React from "react";
 import {View, Text} from 'react-native'
-import { createSwitchNavigator, createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
+import {
+    createSwitchNavigator,
+    createAppContainer,
+    createBottomTabNavigator,
+    createStackNavigator
+} from "react-navigation";
 import {Icon} from "react-native-elements";
 
 import Loading from "../Components/Loading";
@@ -16,6 +21,10 @@ import Booking from "../Containers/Booking/Booking";
 import ChatScreen from "../Containers/ChatScreen";
 import SearchPrice from "../Containers/Search/SearchPrice/SearchPrice";
 import SearchPriceResult from "../Containers/Search/SearchPrice/SearchPriceResult";
+import SearchDate from "../Containers/Search/SearchDate/SearchDate";
+import SearchDateResult from "../Containers/Search/SearchDate/SearchDateResult";
+import SearchStyle from "../Containers/Search/SearchStyle/SearchStyle";
+import SearchStyleResult from "../Containers/Search/SearchStyle/SearchStyleResult";
 
 
 const SplashStack = createStackNavigator({
@@ -34,11 +43,41 @@ const SplashStack = createStackNavigator({
 })
 
 const HomeStack = createStackNavigator({
-    Home: { screen: HomeScreen },
+    Home: {screen: HomeScreen},
     Salon: {
         screen: SalonScreen,
     },
-    Booking: {screen: Booking},
+    Booking: {
+        screen: Booking,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Reservation</Text>
+                </View>
+        }
+    },
+    SearchDate: {screen: SearchDate,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Date</Text>
+                </View>
+        }},
+    SearchStyle: {screen: SearchStyle,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Style de tatouage</Text>
+                </View>
+        }},
+    SearchStyleResult: {screen: SearchStyleResult,
+        navigationOptions: {
+            headerTitle:
+                <View>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Style de tatouage</Text>
+                </View>
+        }},
+    SearchDateResult: {screen: SearchDateResult},
     SearchPrice: {
         screen: SearchPrice,
         navigationOptions: {
@@ -51,13 +90,13 @@ const HomeStack = createStackNavigator({
     SearchPriceResult: {screen: SearchPriceResult}
 })
 
-HomeStack.navigationOptions = ({ navigation }) => {
+HomeStack.navigationOptions = ({navigation}) => {
 
     let tabBarVisible = true;
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'Salon' || routeName == 'Booking' || routeName == 'SearchPrice') {
+    if (routeName == 'Salon' || routeName == 'Booking' || routeName == 'SearchPrice') {
         tabBarVisible = false
     }
 
@@ -72,22 +111,24 @@ const AgendaStack = createStackNavigator({
         navigationOptions: {
             headerTitle:
                 <View>
-                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Agenda / Reservation</Text>
+                    <Text style={{fontSize: 22, fontFamily: 'ProximaNova-Regular', color: '#88D7F4'}}>Agenda /
+                        Reservation</Text>
                 </View>
-        }}
+        }
+    }
 })
 
 const NotificationStack = createStackNavigator({
-    Notification: { screen: NotificationScreen},
-    Chat: { screen: ChatScreen}
+    Notification: {screen: NotificationScreen},
+    Chat: {screen: ChatScreen}
 })
 
-NotificationStack.navigationOptions = ({ navigation }) => {
+NotificationStack.navigationOptions = ({navigation}) => {
     let header = true;
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if ( routeName == 'Chat' ) {
+    if (routeName == 'Chat') {
         header = false
     }
 
@@ -97,8 +138,8 @@ NotificationStack.navigationOptions = ({ navigation }) => {
 }
 
 const ProfileStack = createStackNavigator({
-    Profile: { screen: ProfileScreen}
-},{
+    Profile: {screen: ProfileScreen}
+}, {
     headerMode: 'none'
 })
 
@@ -134,9 +175,15 @@ const AppStack = createBottomTabNavigator({
                 <Icon name={'account-circle-outline'} type={'material-community'} size={30} color={tintColor}/>
             )
         },
-    }
+    },
 
-},{
+
+}, {
+
+    resetOnBlur: true,
+    navigationOptions: {
+        resetOnBlur: true
+    },
     tabBarOptions: {
         showLabel: false
     }
@@ -150,7 +197,7 @@ const Router = createSwitchNavigator(
     },
     {
         initialRouteName: 'Loading',
-
+        resetOnBlur: true
     }
 );
 
