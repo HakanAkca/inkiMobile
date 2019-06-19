@@ -12,6 +12,8 @@ import {Calendar, LocaleConfig} from 'react-native-calendars';
 import firebase from 'react-native-firebase'
 import CardView from 'react-native-cardview'
 import {Badge} from "react-native-elements";
+import moment from 'moment'
+import 'moment/min/locales'
 
 let {width} = Dimensions.get('window');
 
@@ -111,28 +113,17 @@ export default class AgendaScreen extends Component {
                         <Text style={{
                             color: '#616161',
                             fontSize: 16
-                        }}>{`${y}-${m}-${d}` === `${yr}-${ms}-${dy}` ? 'Aujourd\'hui' : `Le ${y}-${m}-${d}`}</Text>
+                        }}>{`${y}-${m}-${d}` === `${yr}-${ms}-${dy}` ? 'Aujourd\'hui' : `Le ${d}-${m}-${y}`}</Text>
                     </View>
                     {
                         this.state.bookings.map((item, index) => {
-                            let active = new Date(item.start)
-                            let today = new Date()
+                            let active = moment(item.start).locale('fr').format('YYYY-MM-DD')
 
-                            let year = active.getFullYear(),
-                                month = active.getMonth() + 1,
-                                date = active.getDate();
-                            month = month < 10 ? `0${month}` : month;
-                            date = date < 10 ? `0${date}` : date;
+                            let hoursStart = moment(item.start).locale('fr').format('hh:mm')
 
-                            let hoursStart = new Date(item.start).getHours()
-                            hoursStart = hoursStart < 10 ? `0${hoursStart}` : hoursStart;
-                            let minutesStart = new Date(item.start).getMinutes()
-                            let secondStart = new Date(item.start).getSeconds()
+                            let hoursEnd = moment(item.end).locale('fr').format('hh:mm')
 
-                            let hoursEnd = new Date(item.end).getHours()
-                            hoursEnd = hoursEnd < 10 ? `0${hoursEnd}` : hoursEnd;
-                            let minutesEnd = new Date(item.end).getMinutes()
-                            let secondEnd = new Date(item.end).getSeconds()
+                            console.warn(this.state.bookings)
 
                             return (
                                 <CardView key={index}
@@ -141,7 +132,7 @@ export default class AgendaScreen extends Component {
                                           cornerRadius={0}
                                 >
                                     {
-                                        `${y}-${m}-${d}` === `${year}-${month}-${date}` &&
+                                        `${y}-${m}-${d}` === active &&
                                         <View
                                             style={{marginTop: 10, backgroundColor: '#FFFFFF', height: 61, width: 331,
                                                 justifyContent: 'center'}}>
@@ -153,7 +144,7 @@ export default class AgendaScreen extends Component {
                                                 <View style={{'backgroundColor': colors[index % colors.length], height: 14, width: 14, borderRadius: 50}} />
                                                 <Text style={{fontSize: 17, width: 140}}>{item.title}</Text>
                                                 <View style={{'backgroundColor': colors[index % colors.length], borderRadius: 50 }}>
-                                                    <Text style={{fontSize: 11, padding: 10, color: '#FFFFFF'}}>{hoursStart + ':' + minutesStart + secondStart} - {hoursEnd + ':' + minutesEnd + secondEnd}</Text>
+                                                    <Text style={{fontSize: 11, padding: 10, color: '#FFFFFF'}}>{hoursStart} - {hoursEnd}</Text>
                                                 </View>
                                             </View>
                                         </View>
