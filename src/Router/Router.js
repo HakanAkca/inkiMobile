@@ -47,6 +47,7 @@ const HomeStack = createStackNavigator({
     Salon: {
         screen: SalonScreen,
     },
+    Chat: {screen: ChatScreen},
     Booking: {
         screen: Booking,
         navigationOptions: {
@@ -96,7 +97,7 @@ HomeStack.navigationOptions = ({navigation}) => {
 
     let routeName = navigation.state.routes[navigation.state.index].routeName
 
-    if (routeName == 'Salon' || routeName == 'Booking' || routeName == 'SearchPrice') {
+    if (routeName == 'Salon' || routeName == 'Booking' || routeName == 'SearchPrice' || routeName == 'SearchDate' || routeName == 'SearchStyle') {
         tabBarVisible = false
     }
 
@@ -185,7 +186,8 @@ const AppStack = createBottomTabNavigator({
         resetOnBlur: true
     },
     tabBarOptions: {
-        showLabel: false
+        showLabel: false,
+        activeTintColor: '#FC7495',
     }
 })
 

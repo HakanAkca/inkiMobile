@@ -49,6 +49,7 @@ class SearchPriceResult extends Component {
                                                 <View style={{flexDirection: 'row'}}>
                                                     <Text>Avis: </Text>
                                                     <Rating
+                                                        readonly
                                                         type='custom'
                                                         ratingColor='#FD7495'
                                                         ratingBackgroundColor='#E6E6E6'

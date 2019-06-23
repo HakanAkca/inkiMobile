@@ -83,7 +83,7 @@ class Booking extends Component {
 
         return (
 
-            <ScrollView style={{flex: 1}}>
+            <View style={{flex: 1}}>
                 <View style={styles.container}>
                     <View style={{alignItems: 'center', backgroundColor: '#FFFFFF'}}>
                         <Calendar
@@ -146,7 +146,7 @@ class Booking extends Component {
 
                     </View>
                     <Button loading={this.state.loading} onPress={() => this.validateBooking()}
-                            containerStyle={{marginTop: 60, width: 375}}
+                            containerStyle={{ width: 375}}
                             buttonStyle={{borderRadius: 0, backgroundColor: '#85DAF7'}} title={'Valider'}/>
                     <Modal isVisible={this.state.confirmationModal}>
                         <View style={styles.content}>
@@ -154,7 +154,7 @@ class Booking extends Component {
                                   color={'#FD7495'}/>
                             <Text style={styles.contentTitle}>Votre réservation à bien été enregistré !</Text>
                             <Button title="Voir l'agenda"
-                                    containerStyle={{width: 129.06}}
+                                    containerStyle={{marginTop: 30, width: 129.06}}
                                     buttonStyle={{
                                         borderRadius: 20,
                                         backgroundColor: 'white',
@@ -167,7 +167,7 @@ class Booking extends Component {
                         </View>
                     </Modal>
                 </View>
-            </ScrollView>
+            </View>
 
         );
     }

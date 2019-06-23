@@ -58,8 +58,8 @@ class SalonScreen extends Component {
                             source={{uri: data.thumbnail}}
                         />
                         <View style={{marginLeft: '5%'}}>
-                            <Text style={{fontSize: 20}}>{data.name}</Text>
-                            <Text>Salon de tatouage</Text>
+                            <Text style={{fontSize: 20, color: '#FFFFFF'}}>{data.name}</Text>
+                            <Text style={{color: '#FFFFFF'}}>Salon de tatouage</Text>
                         </View>
                     </View>
                 </LinearGradient>
@@ -86,6 +86,7 @@ class SalonScreen extends Component {
                                 <View style={{flexDirection: 'column', alignItems: 'flex-start', marginTop: '3%'}}>
                                     <Text style={{fontSize: 14, fontFamily: 'ProximaNova-Regular'}}>Avis :</Text>
                                     <Rating
+                                        readonly
                                         type='custom'
                                         ratingColor='#FD7495'
                                         ratingBackgroundColor='#E6E6E6'
@@ -100,7 +101,6 @@ class SalonScreen extends Component {
                                             <Text style={{
                                                 fontSize: 11,
                                                 fontFamily: 'ProximaNova-Regular',
-                                                textAlign: 'center',
                                                 marginTop: 10,
                                                 marginBottom: 10
                                             }}>{data.description}</Text>
@@ -116,11 +116,10 @@ class SalonScreen extends Component {
                     <ScrollView
                         style={{width: '100%'}}
                         horizontal
-                        showsHorizontalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={true}
                     >
                         {
                             this.state.photos.map((item, index) => {
-                                console.log(item)
                                 if (item.id === data.id) {
                                     return (
                                         <TouchableOpacity key={index} onPress={() => this.showImageInModal(item.url)}>
@@ -138,11 +137,13 @@ class SalonScreen extends Component {
                     </ScrollView>
                 </View>
                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Button buttonStyle={{height: 52.03, width: 325, backgroundColor: '#F8F8F8'}}
+                    <Button
+                            onPress={() => this.props.navigation.navigate('Chat', {data: data})}
+                            buttonStyle={{height: 52.03, width: 325, backgroundColor: '#F8F8F8'}}
                             titleStyle={{color: '#616161'}} title="Contacter le salon"/>
                 </View>
                 <View>
-                    <Button buttonStyle={{width: 375, height: 51, borderRadius: 0}}
+                    <Button buttonStyle={{width: 375, height: 51, borderRadius: 0, backgroundColor: '#85DAF7'}}
                         onPress={() => this.props.navigation.navigate('Booking', {data: data})} title="Reserver"/>
                 </View>
 

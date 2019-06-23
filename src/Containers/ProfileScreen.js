@@ -5,6 +5,7 @@ import firebase from 'react-native-firebase'
 import {Avatar, Button, Icon, Rating} from 'react-native-elements'
 import LinearGradient from "react-native-linear-gradient";
 import CardView from "react-native-cardview";
+import Modal from 'react-native-modal'
 
 class ProfileScreen extends Component {
 
@@ -12,10 +13,14 @@ class ProfileScreen extends Component {
         super()
 
         this.state = {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper nibh at eros consequat vestibulum. Integer aliquam id justo a dignissim. Donec in egestas nisi. Suspendisse a convallis quam, et accumsan erat. Ut facilisis nunc et tortor varius, quis mattis nisl consectetur. Aliquam elementum sed tortor a aliquet. Fusce dapibus rhoncus ex, et volutpat enim tincidunt id.',
             currentUser: [],
             editLocalisation: false,
-            editDescription: false
+            editDescription: false,
+            editInstagram: false,
+            ratingModal: null,
+            description: "",
+            instagram: "",
+            city: ''
         }
     }
 
@@ -32,12 +37,25 @@ class ProfileScreen extends Component {
     componentDidMount() {
         firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value')
             .then((res) => {
-                this.setState({currentUser: res._value})
+                console.log(res)
+                this.setState({currentUser: res._value, description: res._value.description, instagram: res._value.instagram, city:res._value.city})
             })
     }
 
     updateLocalisation() {
         this.setState({editLocalisation: false})
+        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).update({city: this.state.city})
+        this.setState({editInstagram: false})
+    }
+
+    updateDescription() {
+        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).update({description: this.state.description})
+        this.setState({editDescription: false})
+    }
+
+    updateInstagram() {
+        firebase.database().ref('/users/' + firebase.auth().currentUser.uid).update({instagram: this.state.instagram})
+        this.setState({editInstagram: false})
     }
 
     //<Button title="Déconnexion" onPress={() => this.signOutUser()}/>
@@ -45,7 +63,7 @@ class ProfileScreen extends Component {
     render() {
         console.log(this.state.currentUser)
 
-        const {firstName, lastName, city, zipCodeShort, rating} = this.state.currentUser
+        const {firstName, lastName} = this.state.currentUser
 
         return (
             <KeyboardAvoidingView
@@ -59,7 +77,7 @@ class ProfileScreen extends Component {
                                 size={"large"}
                                 source={{
                                     uri:
-                                        'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                                        'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
                                 }}
                             />
                             <View style={{marginLeft: 23}}>
@@ -81,16 +99,12 @@ class ProfileScreen extends Component {
                                 <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: -10}}>
                                     <Icon size={30} name={'map-marker-outline'} type={'material-community'}/>
                                     <TextInput editable={this.state.editLocalisation}
-                                               style={{fontSize: 16, fontFamily: 'ProximaNova-Bold'}} value={city}/>
-                                    <Text style={{fontSize: 16, fontFamily: 'ProximaNova-Bold'}}>,</Text>
-                                    <TextInput editable={this.state.editLocalisation}
-                                               style={{fontSize: 16, fontFamily: 'ProximaNova-Bold', marginLeft: 2}}
-                                               value={zipCodeShort ? zipCodeShort.toString() : ''}/>
-                                    <Text
-                                        style={{fontSize: 16, fontFamily: 'ProximaNova-Bold', marginLeft: 2}}>ème</Text>
+                                               style={{fontSize: 16, fontFamily: 'ProximaNova-Bold', width: '50%'}}
+                                               onChangeText={(city) => this.setState(({city}))}
+                                               value={this.state.city}/>
                                     {
                                         this.state.editLocalisation == true &&
-                                        <TouchableOpacity style={{marginLeft: '60%'}}
+                                        <TouchableOpacity style={{marginLeft: '40%'}}
                                                           onPress={() => this.updateLocalisation()}>
                                             <Icon size={20} name={'check'} color={"#616161"} type={'material-community'}/>
                                         </TouchableOpacity>
@@ -98,7 +112,7 @@ class ProfileScreen extends Component {
                                     {
                                         this.state.editLocalisation == false &&
 
-                                        <TouchableOpacity style={{marginLeft: '60%'}}
+                                        <TouchableOpacity style={{marginLeft: '40%'}}
                                                           onPress={() => this.setState({editLocalisation: true})}>
                                             <Icon size={20} name={'pencil-outline'} color={"#616161"} type={'material-community'}/>
                                         </TouchableOpacity>
@@ -116,7 +130,7 @@ class ProfileScreen extends Component {
                                         imageSize={18}
                                         startingValue={0}
                                     />
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => this.setState({ratingModal: true})}>
                                         <Text style={{
                                             marginTop: 5,
                                             height: 20,
@@ -136,7 +150,7 @@ class ProfileScreen extends Component {
                                             {
                                                 this.state.editDescription == true &&
                                                 <TouchableOpacity style={{marginLeft: '71%'}}
-                                                                  onPress={() => this.setState({editDescription: false})}>
+                                                                  onPress={() => this.updateDescription()}>
                                                     <Icon size={20} name={'check'} color={"#616161"} type={'material-community'}/>
                                                 </TouchableOpacity>
                                             }
@@ -161,7 +175,8 @@ class ProfileScreen extends Component {
                                                 }}
                                                 multiline={true}
                                                 numberOfLines={3}
-                                                value={this.state.text}
+                                                onChangeText={(description) => this.setState(({description}))}
+                                                value={this.state.description}
                                             />
                                         </ScrollView>
                                     </View>
@@ -186,14 +201,31 @@ class ProfileScreen extends Component {
                                         marginLeft: 25,
                                         marginTop: 5
                                     }}>
-                                        <Icon color={"#FD7495"} size={30} name={'instagram'}
+                                        <Icon color={"#FD7495"} size={20} name={'instagram'}
                                               type={'material-community'}/>
-                                        <Text style={{fontSize: 16, color: '#FD7495', fontFamily: 'ProximaNova-Bold'}}>Intagram
-                                            : </Text>
+                                        <Text style={{fontSize: 16, color: '#FD7495', fontFamily: 'ProximaNova-Bold', marginLeft: 3}}>Intagram : </Text>
+                                        <Text   style={{color: '#FD7495'}}>@</Text>
                                         <TextInput
-                                            style={{color: '#FD7495'}}
-                                            value={"@alidura"}
+                                            editable={this.state.editInstagram}
+                                            style={{color: '#FD7495', width: '50%'}}
+                                            onChangeText={(instagram) => this.setState(({instagram}))}
+                                            value={this.state.instagram}
                                         />
+                                        {
+                                            this.state.editInstagram == true &&
+                                            <TouchableOpacity style={{marginLeft: '6%'}}
+                                                              onPress={() => this.updateInstagram()}>
+                                                <Icon size={20} name={'check'} color={"#616161"} type={'material-community'}/>
+                                            </TouchableOpacity>
+                                        }
+                                        {
+
+                                            this.state.editInstagram == false &&
+                                            <TouchableOpacity style={{marginLeft: '6%'}}
+                                                              onPress={() => this.setState({editInstagram: true})}>
+                                                <Icon size={20} name={'pencil-outline'} color={"#616161"} type={'material-community'}/>
+                                            </TouchableOpacity>
+                                        }
                                     </View>
                                 </View>
                             </View>
@@ -216,6 +248,31 @@ class ProfileScreen extends Component {
                             titleStyle={{color: '#85DAF7'}} title="Déconnexion"
                             onPress={() => this.signOutUser()}/>
                 </View>
+                <Modal visible={this.state.ratingModal}>
+                        <View style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderRadius: 5, borderColor: '#F8F8F8'}}>
+                            <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-around',
+                                height: 50,
+                                borderBottomWidth: 2,
+                                borderBottomColor: "#F8F8F8"}}>
+                                <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                    <Text style={{color: '#88D7F4', fontSize: 22}}>Vos avis</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => this.setState({ratingModal: false})}>
+                                    <Text style={{fontSize: 20, color: "#CECECE"}}>X</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{flexDirection: 'row', alignItems: 'center', padding: 30,
+                                borderBottomWidth: 1.5,
+                                borderBottomColor: "#F8F8F8",
+                                height: 105
+                            }}>
+                                <Text>Vous n'avez aucun avis pour le moment !</Text>
+                            </View>
+                        </View>
+                </Modal>
             </KeyboardAvoidingView>
         )
     }

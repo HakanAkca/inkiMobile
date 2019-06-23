@@ -123,8 +123,6 @@ export default class AgendaScreen extends Component {
 
                             let hoursEnd = moment(item.end).locale('fr').format('hh:mm')
 
-                            console.warn(this.state.bookings)
-
                             return (
                                 <CardView key={index}
                                           cardElevation={1}

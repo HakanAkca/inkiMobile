@@ -187,7 +187,7 @@ class HomeScreen extends Component {
         console.log(this.state.data)
         return (
             <View style={styles.container}>
-                <ScrollView>
+                <ScrollView showsHorizontalScrollIndicator={true}>
                     <View style={{alignItems: 'center', width: '100%'}}>
                         <View style={{width: '90%', marginTop: 30}}>
                             <SearchBar
@@ -208,6 +208,7 @@ class HomeScreen extends Component {
                                 value={this.state.text}
                             />
                             <FlatList
+                                showsHorizontalScrollIndicator={false}
                                 data={this.state.data}
                                 renderItem={({item}) => (
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Salon', {data: item})}>
@@ -304,7 +305,7 @@ class HomeScreen extends Component {
                         <ScrollView
                             containerStyle={{justifyContent: 'center'}}
                             horizontal
-                            showsHorizontalScrollIndicator={true}
+                            showsHorizontalScrollIndicator={false}
                         >
                             {this.state.salons.map((item, index) => (
                                 <TouchableOpacity key={index}
